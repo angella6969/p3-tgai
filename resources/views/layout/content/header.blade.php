@@ -1,0 +1,5 @@
+
+
+
+
+@include('layout.content.navbar')
