@@ -2,31 +2,54 @@
 @section('container')
     <!-- Carousel container -->
 
-
+    <section>
+        <div class="container" data-aos="fade-up">
+            <div class="d-flex justify-content-center">
+                <h1 style="text-align: center"> Info P3-TGAI BBWS Serayu Opak</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-4" data-aos="fade-up">
+                    <img class="img-fluid" src="{{ asset('assets\images\background\lapor-medsos-copy.jpg') }}" alt="">
+                </div>
+                <div class="col-md-4" data-aos="fade-up">
+                    <img class="img-fluid" src="{{ asset('assets\images\background\lapor-medsos-copy.jpg') }}" alt="">
+                </div>
+                <div class="col-md-4" data-aos="fade-up">
+                    <img class="img-fluid" src="{{ asset('assets\images\background\lapor-medsos-copy.jpg') }}"
+                        alt="">
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- ======= Services Section ======= -->
     <section class="services">
         <div class="container">
 
             <div class="row">
-                <div class="d-flex justify-content-center align-content-center" data-aos="fade-up">
-                    <h1 class="">Alur Penerimaan TPM P3-TGAI</h1>
+                <div class="d-flex justify-content-center " data-aos="fade-up">
+                    <h1 style="text-align: center">Alur Penerimaan TPM P3-TGAI</h1>
                 </div>
                 <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
                     <div class="icon-box icon-box-pink">
                         <div class="icon"><i class="bx bxl-dribbble"></i></div>
                         <h4 class="title"><a href="">Pendaftaran</a></h4>
-                        <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias
-                            excepturi sint occaecati cupiditate non provident</p>
+                        <p class="description">Proses seleksi Administrasi</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
+                    <div class="icon-box icon-box-pink">
+                        <div class="icon"><i class="bx bxl-dribbble"></i></div>
+                        <h4 class="title"><a href="">Seleksi Administrasi</a></h4>
+                        <p class="description">Proses seleksi Administrasi</p>
                     </div>
                 </div>
 
                 <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
                     <div class="icon-box icon-box-cyan">
                         <div class="icon"><i class="bx bx-file"></i></div>
-                        <h4 class="title"><a href="">Seleksi Administrasi</a></h4>
-                        <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur</p>
+                        <h4 class="title"><a href="">Pengisian Data Diri</a></h4>
+                        <p class="description">Proses pengisian data diri</p>
                     </div>
                 </div>
 
@@ -34,17 +57,15 @@
                     <div class="icon-box icon-box-green">
                         <div class="icon"><i class="bx bx-tachometer"></i></div>
                         <h4 class="title"><a href="">Tes Wawancara</a></h4>
-                        <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                            officia deserunt mollit anim id est laborum</p>
+                        <p class="description">Proses seleksi wawancara</p>
                     </div>
                 </div>
 
                 <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
                     <div class="icon-box icon-box-blue">
                         <div class="icon"><i class="bx bx-world"></i></div>
-                        <h4 class="title"><a href="">Pengumuman</a></h4>
-                        <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui
-                            blanditiis praesentium voluptatum deleniti atque</p>
+                        <h4 class="title"><a href="">Hasil Akhir</a></h4>
+                        <p class="description">Pengumuman hasil akhir</p>
                     </div>
                 </div>
 
@@ -86,7 +107,7 @@
         </div>
     </section><!-- End Why Us Section --> --}}
 
-    <!-- ======= Features Section ======= -->
+    {{-- <!-- ======= Features Section ======= -->
     <section class="features">
         <div class="container">
 
@@ -179,5 +200,5 @@
             </div>
 
         </div>
-    </section><!-- End Features Section -->
+    </section><!-- End Features Section --> --}}
 @endsection

@@ -19,3 +19,9 @@
 
   <!-- Slick Carousel JavaScript -->
   <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+  {{-- feathericons --}}
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script>
+      feather.replace();
+  </script>
