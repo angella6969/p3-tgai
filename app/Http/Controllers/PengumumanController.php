@@ -13,7 +13,11 @@ class PengumumanController extends Controller
      */
     public function index()
     {
-        return view('content.pengumuman');
+        $pengumuman = Pengumuman::latest()->get();
+
+        return view('content.pengumuman',[
+            'pengumumans'=> $pengumuman
+        ]);
     }
 
     /**
@@ -21,7 +25,7 @@ class PengumumanController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**

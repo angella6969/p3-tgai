@@ -23,28 +23,35 @@
             <div class="row">
 
                 <div class="col-lg-12 entries">
+                    {{-- {{ $pengumumans }} --}}
+                    @foreach ($pengumumans as $pengumuman)
+                        <article class="entry">
+                            <h2 class="entry-title">
+                                {{ $pengumuman->nama }}
+                            </h2>
 
-                    <article class="entry">
-                        <h2 class="entry-title">
-                           Pengumuman rekrumen P3-TGAI
-                        </h2>
-
-                        <div class="entry-meta">
-                            <ul>
-                                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
-                                        href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-                            </ul>
-                        </div>
-
-                        <div class="entry-content">
-                            <p>selamat keapad pelamar</p>
-                            <div class="">
-                                <table class="table table-bordered">
-                                    <td>Hasil Seleksi</td>
-                                    <td class="d-flex justify-content-center"><a href="">Unduh</a></td>
-                                </table>
+                            <div class="entry-meta">
+                                <ul>
+                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
+                                            href="blog-single.html"><time datetime="2020-01-01">
+                                                {{ $pengumuman->created_at }}
+                                            </time></a></li>
+                                </ul>
                             </div>
-                        </div>
+
+                            <div class="entry-content">
+                                <p>{{ $pengumuman->judul }}</p>
+                                <div class="">
+                                    <table class="table table-bordered">
+                                        <td>{{ $pengumuman->body }}</td>
+                                        <td class="d-flex justify-content-center"><a
+                                                href="{{ $pengumuman->link_pengumuman }}">Unduh</a></td>
+                                    </table>
+                                </div>
+                            </div>
+                        </article>
+                    @endforeach
+
                 </div><!-- End blog entries list -->
             </div>
         </div>

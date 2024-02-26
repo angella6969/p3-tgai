@@ -10,8 +10,8 @@
           <nav id="navbar" class="navbar">
               <ul>
                   <li><a href="{{ route('beranda') }}">Beranda</a></li> 
-                  <li><a href="{{ route('info.index') }}">Info</a></li>
-                  <li><a href="#">Download</a></li>
+                  {{-- <li><a href="{{ route('info.index') }}">Info</a></li> --}}
+                  {{-- <li><a href="#">Download</a></li> --}}
                   <li><a href="{{ route('pengumuman.index') }}">Pengumuman</a></li>
                   <li><a href="#">Daftar</a></li>
                   {{-- <li><a href="#">Blog</a></li> --}}

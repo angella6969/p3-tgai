@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\RekrutmenController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,4 +39,24 @@ route::resource('info' ,InfoController::class)->names([
     'show' => 'info.show',
     'update' => 'info.update',
     'destroy' => 'info.destroy',
+]);
+
+route::resource('dashboard' ,DashboardController::class)->names([
+    'index' => 'dashboard.index',
+    'create' => 'dashboard.create',
+    'store' => 'dashboard.store',
+    'edit' => 'dashboard.edit',
+    'show' => 'dashboard.show',
+    'update' => 'dashboard.update',
+    'destroy' => 'dashboard.destroy',
+]);
+
+route::resource('dashboard/rekrutmen' ,RekrutmenController::class)->names([
+    'index' => 'rekrutmen.index',
+    'create' => 'rekrutmen.create',
+    'store' => 'rekrutmen.store',
+    'edit' => 'rekrutmen.edit',
+    'show' => 'rekrutmen.show',
+    'update' => 'rekrutmen.update',
+    'destroy' => 'rekrutmen.destroy',
 ]);

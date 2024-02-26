@@ -37,15 +37,6 @@
                 left: 0; "
                     src="{{ asset('assets\images\background\lapor-medsos-copy.jpg') }}" alt="">
             </div>
-            <div class="row justify-content-center">
-                <div class="col-xl-8">
-                    <h2>Welcome to Moderna</h2>
-                    <p>Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam.
-                        Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus
-                        deleniti vel. Minus et tempore modi architecto.</p>
-                    <a href="" class="btn-get-started ">Read More</a>
-                </div>
-            </div>
         </div>
     </section><!-- End Hero No Slider Sectio -->
     <!-- ======= Services Section ======= -->
