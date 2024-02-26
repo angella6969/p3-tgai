@@ -13,8 +13,11 @@ class RekrutmenController extends Controller
      */
     public function index()
     {
-        dd('awd');
-        return view('dashboard.rekrutmen.index'); 
+        // dd('awd');
+        $rekrutmen = Rekrutmen::latest()->get();
+        return view('dashboard.rekrutmen.index', [
+            'rekrutmens' => $rekrutmen
+        ]);
     }
 
     /**
@@ -22,7 +25,7 @@ class RekrutmenController extends Controller
      */
     public function create()
     {
-        //
+        dd('ini create');
     }
 
     /**
@@ -36,9 +39,13 @@ class RekrutmenController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Rekrutmen $rekrutmen)
+    public function show(string $id)
     {
-        //
+        $rekrutmen = Rekrutmen::findOrFail($id);
+        return view('dashboard.rekrutmen.show', [
+            'rekrutmen' => $rekrutmen
+        ]);
+
     }
 
     /**

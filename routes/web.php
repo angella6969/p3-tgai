@@ -41,7 +41,7 @@ route::resource('info' ,InfoController::class)->names([
     'destroy' => 'info.destroy',
 ]);
 
-route::resource('dashboard' ,DashboardController::class)->names([
+route::resource('dashboard' ,DashboardController::class)->names([ 
     'index' => 'dashboard.index',
     'create' => 'dashboard.create',
     'store' => 'dashboard.store',
@@ -51,7 +51,9 @@ route::resource('dashboard' ,DashboardController::class)->names([
     'destroy' => 'dashboard.destroy',
 ]);
 
-route::resource('dashboard/rekrutmen' ,RekrutmenController::class)->names([
+// Route::get('rekrutmen1/1', [RekrutmenController::class, 'index']);
+
+route::resource('rekrutmen' ,RekrutmenController::class)->names([
     'index' => 'rekrutmen.index',
     'create' => 'rekrutmen.create',
     'store' => 'rekrutmen.store',

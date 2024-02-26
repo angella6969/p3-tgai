@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('nama')->nullable();
             $table->string('nik')->nullable();
+            $table->string('nohp')->nullable();
+            $table->string('status')->nullable();
             $table->string('alamat_ktp')->nullable();
+            $table->string('email')->nullable();
             $table->string('alamat_dominisil')->nullable();
             $table->string('pdf_lamaran')->nullable();
             $table->string('pdf_ijazah')->nullable();
