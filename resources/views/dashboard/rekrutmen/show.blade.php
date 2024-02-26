@@ -58,7 +58,11 @@
                                     {{-- <object data="{{ asset('pdf\acara.pdf') }}" type="application/pdf" width="100%"
                                         height="500px"></object> --}}
                                     {{-- <embed src="{{ url('pdf\acara.pdf') }}" width="800px" height="600px" /> --}}
-                                    <iframe src="https://docs.google.com/gview?url={{ asset('pdf/acara.pdf') }}&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe>
+                                    {{-- <iframe src="https://docs.google.com/gview?url={{ asset('pdf/acara.pdf') }}&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe> --}}
+                                    {{-- <embed src="{{ asset('pdf/acara.pdf') }}" type="application/pdf" width="100%" height="100%">
+                                         --}}
+                                         <embed src="{{ asset('pdf/acara.pdf') }}" type="application/pdf" width="100%" height="100%" />
+
 
                                 </div>
                             </div>
