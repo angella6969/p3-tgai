@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Phone No</label>
+                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Nomor Hp</label>
                                 <div class="col-sm-10">
                                     <div class="input-group input-group-merge">
                                         <span id="basic-icon-default-phone2" class="input-group-text"><i
@@ -52,18 +52,8 @@
                             <div class="row mb-3">
                                 <label class="col-sm-2 form-label" for="basic-icon-default-message">Message</label>
                                 <div class="col-sm-10">
-                                    {{-- <iframe src="{{ asset('pdf\acara.pdf') }}" width="800px" height="600px"></iframe> --}}
-                                    {{-- <iframe src="{{ url('pdf\acara.pdf') }}" align="top" height="620" width="100%" frameborder="0" scrolling="auto"></iframe> --}}
-                                    {{-- <a href="{{ url('pdf\acara.pdf') }}">awd</a> --}}
-                                    {{-- <object data="{{ asset('pdf\acara.pdf') }}" type="application/pdf" width="100%"
-                                        height="500px"></object> --}}
-                                    {{-- <embed src="{{ url('pdf\acara.pdf') }}" width="800px" height="600px" /> --}}
-                                    {{-- <iframe src="https://docs.google.com/gview?url={{ asset('pdf/acara.pdf') }}&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe> --}}
-                                    {{-- <embed src="{{ asset('pdf/acara.pdf') }}" type="application/pdf" width="100%" height="100%">
-                                         --}}
-                                         <embed src="{{ asset('pdf/acara.pdf') }}" type="application/pdf" width="100%" height="100%" />
-
-
+                                    <embed src="{{ asset('pdf/acara.pdf') }}" type="application/pdf" width="100%"
+                                        height="100%" />
                                 </div>
                             </div>
                             <div class="row justify-content-end">
