@@ -12,21 +12,23 @@ class UserController extends Controller
 
     public function authenticate(Request $request)
     {
+        // dd('awd');
 
         $request->validate([
-            'email' => ['required', 'email:dns'],
-            'password' => ['required', 'min:6']
+            'email' => ['required'],
+            'password' => ['required']
         ]);
 
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required', 'min:6']
+            'email' => ['required'],
+            'password' => ['required']
         ]);
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('dashboard');
+            return redirect()->route('dashboard.index');
         } else {
-            return redirect()->route('login')->with('loginError', 'Email atau Password invalid');
+            // dd('awd');
+            return redirect()->route('login')->with('fail', 'Email atau Password salah');
         }
     }
     public function logout(Request $request)
@@ -119,5 +121,9 @@ class UserController extends Controller
         }
 
         return view('auth.registrasi.registrasi');
+    }
+    public function showpdf($id)
+    {
+        return response()->file($id, ['Content-Type' => 'application/pdf']);
     }
 }

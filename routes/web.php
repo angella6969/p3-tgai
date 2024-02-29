@@ -22,14 +22,18 @@ Route::get('/', function () {
     return view('content.home');
 })->name('beranda');
 
-route::get('/login', [UserController::class, 'index'])->name('login');
-route::post('/login', [UserController::class, 'authenticate'])->name('authenticate');
+route::get('/showpdf/{id}', [UserController::class, 'showpdf'])->name('showpdf');
+
+route::get('/lo_gin', [UserController::class, 'index'])->name('login');
+route::post('/lo_gin', [UserController::class, 'authenticate'])->name('authenticate');
 
 route::get('/registrasi', [UserController::class, 'registrasi'])->name('registrasi');
 route::post('/registrasi', [UserController::class, 'registrasiStore'])->name('registrasiStore');
 
+// route::get('/dashboard/q', [DashboardController::class, 'index'])->name('dashboard');
 
-route::resource('pengumuman', PengumumanController::class)->names([
+
+route::resource('/pengumuman', PengumumanController::class)->names([
     'index' => 'pengumuman.index',
     'create' => 'pengumuman.create',
     'store' => 'pengumuman.store',
@@ -39,7 +43,7 @@ route::resource('pengumuman', PengumumanController::class)->names([
     'destroy' => 'pengumuman.destroy',
 ]);
 
-route::resource('info', InfoController::class)->names([
+route::resource('/info', InfoController::class)->names([
     'index' => 'info.index',
     'create' => 'info.create',
     'store' => 'info.store',
@@ -49,7 +53,7 @@ route::resource('info', InfoController::class)->names([
     'destroy' => 'info.destroy',
 ]);
 
-route::resource('dashboard', DashboardController::class)->names([
+route::resource('/dashboard', DashboardController::class)->names([
     'index' => 'dashboard.index',
     'create' => 'dashboard.create',
     'store' => 'dashboard.store',
@@ -61,7 +65,7 @@ route::resource('dashboard', DashboardController::class)->names([
 
 // Route::get('rekrutmen1/1', [RekrutmenController::class, 'index']);
 
-route::resource('rekrutmen', RekrutmenController::class)->names([
+route::resource('/rekrutmen', RekrutmenController::class)->names([
     'index' => 'rekrutmen.index',
     'create' => 'rekrutmen.create',
     'store' => 'rekrutmen.store',

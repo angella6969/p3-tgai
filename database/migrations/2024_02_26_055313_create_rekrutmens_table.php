@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('rekrutmens', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable();
             $table->string('nama')->nullable();
             $table->string('nik')->nullable();
             $table->string('nohp')->nullable();
@@ -24,7 +25,7 @@ return new class extends Migration
             $table->string('pdf_ijazah')->nullable();
             $table->string('pdf_ktp')->nullable();
             $table->string('pdf_simAC')->nullable();
-            $table->string('pdf NPWP')->nullable();
+            $table->string('pdf_npwp')->nullable();
             $table->string('pdf_pernyataan')->nullable();
             $table->timestamps();
         });
