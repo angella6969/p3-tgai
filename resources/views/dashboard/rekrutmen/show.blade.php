@@ -60,8 +60,9 @@
 
                         <div class="row mb-3">
                             <label class="col-sm-2 form-label" for="basic-icon-default-message">Surat Lamaran</label>
-                            <div class="col-sm-10">
-                                <a href="{{ $rekrutmen->pdf_lamaran }}" target="_blank">show
+                            <div class="col-sm-10"> {{-- {{ asset('storage/' . substr($berita->url_foto, 6, 6)) }} --}}
+                                <img src="{{ $rekrutmen->pdf_lamaran }}" alt="">
+                                <a href="{{ asset('storage/' . substr($rekrutmen->pdf_lamaran, 6)) }}" target="_blank">show
                                     pdf</a>
                             </div>
                         </div>
@@ -69,7 +70,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 form-label" for="basic-icon-default-message">Ijaza</label>
                             <div class="col-sm-10">
-                                <a href="{{ $rekrutmen->pdf_ijazah }}" target="_blank">show
+                                <a href="{{ asset('storage/' . substr($rekrutmen->pdf_ijazah, 6)) }}" target="_blank">show
                                     pdf</a>
                             </div>
                         </div>
@@ -77,7 +78,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 form-label" for="basic-icon-default-message">KTP</label>
                             <div class="col-sm-10">
-                                <a href="{{ $rekrutmen->pdf_ktp }}" target="_blank">show
+                                <a href="{{ asset('storage/' . substr($rekrutmen->pdf_ktp, 6)) }}" target="_blank">show
                                     pdf</a>
                             </div>
                         </div>
@@ -85,7 +86,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 form-label" for="basic-icon-default-message">SIM A/C</label>
                             <div class="col-sm-10">
-                                <a href="{{ $rekrutmen->pdf_simAC }}" target="_blank">show
+                                <a href="{{ asset('storage/' . substr($rekrutmen->pdf_simAC, 6)) }}" target="_blank">show
                                     pdf</a>
                             </div>
                         </div>
@@ -93,7 +94,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 form-label" for="basic-icon-default-message">NPWP</label>
                             <div class="col-sm-10">
-                                <a href="{{ $rekrutmen->pdf_npwp }}" target="_blank">show
+                                <a href="{{ asset('storage/' . substr($rekrutmen->pdf_npwp, 6)) }}" target="_blank">show
                                     pdf</a>
                             </div>
                         </div>
@@ -101,7 +102,8 @@
                             <label class="col-sm-2 form-label" for="basic-icon-default-message">Surat
                                 Pernyataan</label>
                             <div class="col-sm-10">
-                                <a href="{{ $rekrutmen->pdf_pernyataan }}" target="_blank">show
+                                <a href="{{ asset('storage/' . substr($rekrutmen->pdf_pernyataan, 6)) }}"
+                                    target="_blank">show
                                     pdf</a>
                             </div>
                         </div>
