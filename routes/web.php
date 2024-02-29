@@ -63,8 +63,8 @@ route::resource('/dashboard', DashboardController::class)->names([
     'destroy' => 'dashboard.destroy',
 ]);
 
-// Route::get('rekrutmen1/1', [RekrutmenController::class, 'index']);
-
+route::get('/rekrutmen/profile', [RekrutmenController::class, 'profile'])->name('profile');
+route::post('/rekrutmen/profile', [RekrutmenController::class, 'saveprofile'])->name('saveprofile');
 route::resource('/rekrutmen', RekrutmenController::class)->names([
     'index' => 'rekrutmen.index',
     'create' => 'rekrutmen.create',

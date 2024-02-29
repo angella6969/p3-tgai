@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Rekrutmen;
 use App\Http\Requests\StoreRekrutmenRequest;
 use App\Http\Requests\UpdateRekrutmenRequest;
+use Illuminate\Support\Facades\Request;
 
 class RekrutmenController extends Controller
 {
@@ -16,6 +17,22 @@ class RekrutmenController extends Controller
         // dd('awd');
         $rekrutmen = Rekrutmen::latest()->get();
         return view('dashboard.rekrutmen.index', [
+            'rekrutmens' => $rekrutmen
+        ]);
+    }
+    public function profile()
+    {
+        // dd('awd');
+        $rekrutmen = Rekrutmen::latest()->get();
+        return view('dashboard.rekrutmen.profile', [
+            'rekrutmens' => $rekrutmen
+        ]);
+    }
+    public function saveprofile(Request $request)
+    {
+         dd('ini save profile');
+        $rekrutmen = Rekrutmen::latest()->get();
+        return view('dashboard.rekrutmen.profile', [
             'rekrutmens' => $rekrutmen
         ]);
     }

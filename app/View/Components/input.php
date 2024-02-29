@@ -11,13 +11,14 @@ class input extends Component
     /**
      * Create a new component instance.
      */
-    public  $icon_class, $name_input, $value1;
-    public function __construct( $icon_class, $name_input, $value1)
+    public  $label, $icon, $value1, $nama;
+    public function __construct($label, $icon, $nama, $value1)
     {
-        
-        $this->icon_class = $icon_class;
-        $this->name_input  = $name_input;
+
+        $this->label = $label;
+        $this->icon  = $icon;
         $this->value1  = $value1;
+        $this->nama  = $nama;
     }
 
     /**
