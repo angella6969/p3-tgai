@@ -9,31 +9,12 @@
 
           <nav id="navbar" class="navbar">
               <ul>
-                  <li><a href="{{ route('beranda') }}">Beranda</a></li> 
+                  <li><a href="{{ route('beranda') }}">Beranda</a></li>
                   {{-- <li><a href="{{ route('info.index') }}">Info</a></li> --}}
                   {{-- <li><a href="#">Download</a></li> --}}
                   <li><a href="{{ route('pengumuman.index') }}">Pengumuman</a></li>
-                  <li><a href="#">Daftar</a></li>
-                  {{-- <li><a href="#">Blog</a></li> --}}
-                  {{-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-                    <ul>
-                        <li><a href="#">Drop Down 1</a></li>
-                        <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i
-                                    class="bi bi-chevron-right"></i></a>
-                            <ul>
-                                <li><a href="#">Deep Drop Down 1</a></li>
-                                <li><a href="#">Deep Drop Down 2</a></li>
-                                <li><a href="#">Deep Drop Down 3</a></li>
-                                <li><a href="#">Deep Drop Down 4</a></li>
-                                <li><a href="#">Deep Drop Down 5</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Drop Down 2</a></li>
-                        <li><a href="#">Drop Down 3</a></li>
-                        <li><a href="#">Drop Down 4</a></li>
-                    </ul>
-                </li>
-                <li><a href="contact.html">Contact Us</a></li> --}}
+                  <li><a href="{{ route('login') }}">login</a></li>
+                  <li><a href="{{ route('registrasi') }}">Daftar</a></li>
               </ul>
               <i class="bi bi-list mobile-nav-toggle"></i>
           </nav><!-- .navbar -->

@@ -218,4 +218,5 @@
 
         </div>
     </section><!-- End Features Section --> --}}
+    <x-alert></x-alert>
 @endsection
