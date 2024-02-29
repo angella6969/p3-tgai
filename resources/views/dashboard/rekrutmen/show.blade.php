@@ -13,65 +13,33 @@
                         <small class="text-muted float-end">Merged input group</small>
                     </div> --}}
                     <div class="card-body">
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">NIK</label>
-                            <div class="col-sm-10">
-                                <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-fullname2" class="input-group-text"><i
-                                            class="bx bx-user"></i></span>
-                                    <input type="text" class="form-control" id="basic-icon-default-fullname"
-                                        value="{{ $rekrutmen->nik }}" aria-describedby="basic-icon-default-fullname2" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Nama</label>
-                            <div class="col-sm-10">
-                                <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-fullname2" class="input-group-text"><i
-                                            class="bx bx-user"></i></span>
-                                    <input type="text" class="form-control" id="basic-icon-default-fullname"
-                                        value="{{ $rekrutmen->nama }}" aria-describedby="basic-icon-default-fullname2" />
-                                </div>
-                            </div>
-                        </div>
+                        <x-input label="NIK" icon="bx bx-user" value1="{{ $rekrutmen->nik }}" nama="nik"/>
+                        <x-input label="Nama" icon="bx bx-user" value1="{{ $rekrutmen->nama }}" nama="nama"/>
+                        <x-input label="Email" icon="bx bx-envelope" value1="{{ $rekrutmen->email }}" nama="email"/>
+                        <x-input label="No Hp" icon="bx bx-phone" value1="{{ $rekrutmen->nohp }}" nama="nohp"/>
+                        <x-input label="No Hp" icon="bx bx-phone" value1="{{ $rekrutmen->nohp }}" nama="nohp"/>
 
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Email</label>
-                            <div class="col-sm-10">
-                                <div class="input-group input-group-merge">
-                                    <span class="input-group-text"><i class="bx bx-envelope"></i></span>
-                                    <input type="text" id="basic-icon-default-email" class="form-control"
-                                        value="{{ $rekrutmen->email }}" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-2 form-label" for="basic-icon-default-phone">Nomor Hp</label>
-                            <div class="col-sm-10">
-                                <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-phone2" class="input-group-text"><i
-                                            class="bx bx-phone"></i></span>
-                                    <input type="text" id="basic-icon-default-phone" class="form-control phone-mask"
-                                        value="{{ $rekrutmen->nohp }}" />
-                                </div>
-                            </div>
-                        </div>
+                     
+                     
 
-                        <div class="row mb-3">
+                     
+                      
+
+                        <div class="mb-3">
                             <label class="col-sm-2 form-label" for="basic-icon-default-message">Surat Lamaran</label>
                             <div class="col-sm-10"> {{-- {{ asset('storage/' . substr($berita->url_foto, 6, 6)) }} --}}
-                                <img src="{{ $rekrutmen->pdf_lamaran }}" alt="">
-                                <a href="{{ asset('storage/' . substr($rekrutmen->pdf_lamaran, 6)) }}" target="_blank">show
-                                    pdf</a>
+                                <img class="img-fluid" src="\img\BingImageOfTheDay.jpg" alt="">
+                                {{-- <a href="{{ asset('storage/' . substr($rekrutmen->pdf_lamaran, 6)) }}" target="_blank">show
+                                    pdf</a> --}}
                             </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <div class="mb-3">
                             <label class="col-sm-2 form-label" for="basic-icon-default-message">Ijaza</label>
                             <div class="col-sm-10">
-                                <a href="{{ asset('storage/' . substr($rekrutmen->pdf_ijazah, 6)) }}" target="_blank">show
-                                    pdf</a>
+                                <img class="img-fluid" src="\img\Surat_Pernyataan_10_Poin-1.png" alt="">
+                                {{-- <a href="{{ asset('storage/' . substr($rekrutmen->pdf_ijazah, 6)) }}" target="_blank">show
+                                    pdf</a> --}}
                             </div>
                         </div>
 
