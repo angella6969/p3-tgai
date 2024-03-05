@@ -25,7 +25,9 @@ class UserController extends Controller
         ]);
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('dashboard.index');
+            if (auth()->user()->role_id == 3) {
+                return redirect()->route('dashboard.index');
+            }
         } else {
             // dd('awd');
             return redirect()->route('login')->with('fail', 'Email atau Password salah');
@@ -122,8 +124,14 @@ class UserController extends Controller
 
         return view('auth.registrasi.registrasi');
     }
-    public function showpdf($id)
+    public function showpdf()
     {
-        return response()->file($id, ['Content-Type' => 'application/pdf']);
+        $pathToFile = 'pdf\acara.pdf';
+
+        // Set header Content-Disposition
+        header('Content-Disposition: attachment; filename="acara.pdf"');
+
+        // Kirim file sebagai respons
+        return response()->file($pathToFile);
     }
 }

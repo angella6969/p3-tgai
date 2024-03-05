@@ -22,7 +22,7 @@ Route::get('/', function () {
     return view('content.home');
 })->name('beranda');
 
-route::get('/showpdf/{id}', [UserController::class, 'showpdf'])->name('showpdf');
+route::get('/showpdf', [UserController::class, 'showpdf'])->name('showpdf');
 
 route::get('/lo_gin', [UserController::class, 'index'])->name('login');
 route::post('/lo_gin', [UserController::class, 'authenticate'])->name('authenticate');
@@ -30,7 +30,7 @@ route::post('/lo_gin', [UserController::class, 'authenticate'])->name('authentic
 route::get('/registrasi', [UserController::class, 'registrasi'])->name('registrasi');
 route::post('/registrasi', [UserController::class, 'registrasiStore'])->name('registrasiStore');
 
-// route::get('/dashboard/q', [DashboardController::class, 'index'])->name('dashboard');
+// route::get('/dashboard/q', [DashboardController::class, 'index'])->name('dashboard'); 
 
 
 route::resource('/pengumuman', PengumumanController::class)->names([

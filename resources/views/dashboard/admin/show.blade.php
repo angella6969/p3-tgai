@@ -13,17 +13,11 @@
                         <small class="text-muted float-end">Merged input group</small>
                     </div> --}}
                     <div class="card-body">
-                        <x-input label="NIK" icon="bx bx-user" value1="{{ $rekrutmen->nik }}" nama="nik"/>
-                        <x-input label="Nama" icon="bx bx-user" value1="{{ $rekrutmen->nama }}" nama="nama"/>
-                        <x-input label="Email" icon="bx bx-envelope" value1="{{ $rekrutmen->email }}" nama="email"/>
-                        <x-input label="No Hp" icon="bx bx-phone" value1="{{ $rekrutmen->nohp }}" nama="nohp"/>
-                        <x-input label="No Hp" icon="bx bx-phone" value1="{{ $rekrutmen->nohp }}" nama="nohp"/>
-
-                     
-                     
-
-                     
-                      
+                        <x-input label="NIK" icon="bx bx-user" value1="{{ $rekrutmen->nik }}" nama="nik" />
+                        <x-input label="Nama" icon="bx bx-user" value1="{{ $rekrutmen->nama }}" nama="nama" />
+                        <x-input label="Email" icon="bx bx-envelope" value1="{{ $rekrutmen->email }}" nama="email" />
+                        <x-input label="No Hp" icon="bx bx-phone" value1="{{ $rekrutmen->nohp }}" nama="nohp" />
+                        <x-input label="No Hp" icon="bx bx-phone" value1="{{ $rekrutmen->nohp }}" nama="nohp" />
 
                         <div class="mb-3">
                             <label class="col-sm-2 form-label" for="basic-icon-default-message">Surat Lamaran</label>
