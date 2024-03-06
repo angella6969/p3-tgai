@@ -28,6 +28,7 @@ return new class extends Migration
             // 'npwp' => ['file', 'max:5120', 'mimetypes:image/jpeg,image/png,image/gif,application/pdf', 'nullable'],
             $table->id();
             $table->foreignId('user_id')->nullable();
+            $table->string('profile')->nullable();
             $table->string('nama')->nullable();
             $table->string('nik')->nullable();
             $table->string('nohp')->nullable();

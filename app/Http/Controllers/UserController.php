@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Unique;
 
 class UserController extends Controller
 {
@@ -26,6 +27,8 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             if (auth()->user()->role_id == 3) {
+                return redirect()->route('rekrutmen.index');
+            } else {
                 return redirect()->route('dashboard.index');
             }
         } else {
@@ -105,17 +108,19 @@ class UserController extends Controller
         // dd('awdawd');
         $data = [
             'nama' => 'required|max:255',
-            'email' => ['required', 'email:dns'],
+            'email' => ['required', 'email:dns', 'unique:users'],
             'password' => ['required', 'min:3', 'max:255'],
             'passwordulangi' => ['required', 'min:3', 'max:255'],
         ];
         $validatedData = $request->validate($data);
 
+
+
         if ($validatedData['password'] ===  $validatedData['passwordulangi']) {
-            $validatedData['role'] = "3";
+            $validatedData['role_id'] = 3;
             $validatedData['password'] = Hash::make($validatedData['password']);
             User::create($validatedData);
-
+            // dd($validatedData);
             return redirect()->route('beranda')
                 ->with('success', 'Selamat Anda Berhasil Mendaftar, Login dan Lengkapi Data');
         } else {

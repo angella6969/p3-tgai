@@ -6,6 +6,7 @@ use App\Models\Rekrutmen;
 use App\Http\Requests\StoreRekrutmenRequest;
 use App\Http\Requests\UpdateRekrutmenRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,18 +17,19 @@ class RekrutmenController extends Controller
      */
     public function index()
     {
-        // dd('awd');
-        $rekrutmen = Rekrutmen::latest()->get();
-        return view('dashboard.admin.index', [
-            'rekrutmens' => $rekrutmen
+        // $rekrutmen = Rekrutmen::latest()->get();
+        return view('dashboard.rekrutmen.index', [
+            // 'rekrutmens' => $rekrutmen
         ]);
     }
     public function profile()
     {
-        // dd('awd');
-        $rekrutmen = Rekrutmen::latest()->get();
+        $userId = Auth::id();
+
+        $rekrutmens = Rekrutmen::where('user_id', $userId)->latest()->first();
+
         return view('dashboard.rekrutmen.profile', [
-            'rekrutmens' => $rekrutmen
+            'rekrutmens' => $rekrutmens
         ]);
     }
     public function saveprofile(Request $request)
@@ -35,6 +37,7 @@ class RekrutmenController extends Controller
 
         $validatedData = $request->validate([
             'nama' => ['nullable'],
+            'user_id' => ['nullable'],
             'email' => ['nullable'],
             'nik' => ['nullable'],
             'nohp' => ['nullable'],
@@ -103,7 +106,7 @@ class RekrutmenController extends Controller
 
 
             DB::commit();
-            return redirect('/dashboard')->with('success', 'Data berhasil disimpan.');
+            return redirect('/rekrutmen')->with('success', 'Data berhasil disimpan.');
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('fail', 'Terjadi kesalahan: ' . $e->getMessage());

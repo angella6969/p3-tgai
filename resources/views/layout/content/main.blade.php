@@ -10,7 +10,7 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link rel="shortcut icon" type="image/png" href="assets/images/logos/favicon.png" />
+    <link rel="shortcut icon" type="image/png" href="{{ asset('img\logo\favicon.png') }}" />
 
 
     @include('layout.content.link')

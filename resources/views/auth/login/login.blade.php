@@ -59,11 +59,8 @@
                         <div class="app-brand justify-content-center">
                             {{-- isi dengan logo --}}
                         </div>
-                        <!-- /Logo -->
-                        {{-- <h4 class="mb-2">Welcome to Sneat! 👋</h4>
-                        <p class="mb-4">Please sign-in to your account and start the adventure</p> --}}
 
-                        <form id="formAuthentication" class="mb-3" action="{{ route('authenticate') }}"
+                        <form id="" class="mb-3" action="{{ route('authenticate') }}"
                             method="POST">
                             {{ csrf_field() }}
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">

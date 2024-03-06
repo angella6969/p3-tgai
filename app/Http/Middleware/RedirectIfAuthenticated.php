@@ -21,7 +21,12 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                $user = Auth::guard($guard)->user();
+                if ($user->role_id == 1 || $user->role_id == 2) {
+                    return redirect()->route('dashboard.index');
+                } else {
+                    return redirect()->route('rekrutmen.index'); // Sesuaikan dengan rute halaman rekrutmen
+                }
             }
         }
 

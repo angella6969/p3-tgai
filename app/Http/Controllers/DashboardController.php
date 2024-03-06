@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dashboard;
 use App\Http\Requests\StoreDashboardRequest;
 use App\Http\Requests\UpdateDashboardRequest;
+use App\Models\Rekrutmen;
 
 class DashboardController extends Controller
 {
@@ -13,7 +14,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index'); 
+        $rekrutmen = Rekrutmen::latest()->get();
+        return view('dashboard.admin.index', [
+            'rekrutmens' => $rekrutmen
+        ]);
     }
 
     /**
@@ -62,5 +66,12 @@ class DashboardController extends Controller
     public function destroy(Dashboard $dashboard)
     {
         //
+    }
+    public function dataRekrutmen()
+    {
+        $rekrutmen = Rekrutmen::latest()->get();
+        return view('dashboard.admin.dataRekrutmen', [
+            'rekrutmens' => $rekrutmen
+        ]);
     }
 }

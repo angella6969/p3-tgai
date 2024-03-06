@@ -32,7 +32,7 @@
     <meta name="description" content="" />
 
     {{-- <!-- Favicon --> {{ asset('template') }} --}}
-    <link rel="icon" type="image/x-icon" href="{{ asset('template/assets/img/favicon/favicon.ico') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('img\logo\favicon.png') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
