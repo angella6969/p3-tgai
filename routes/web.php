@@ -71,6 +71,7 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['Rekrutmen'])->group(function () {
 
         // route::get('/rekrutmen', [RekrutmenController::class, 'index'])->name('dashboard-rekrutmen');
+        route::get('/rekrutmen/profile-show', [RekrutmenController::class, 'profileshow'])->name('profileshow');
         route::get('/rekrutmen/profile', [RekrutmenController::class, 'profile'])->name('profile');
         route::post('/rekrutmen/profile', [RekrutmenController::class, 'saveprofile'])->name('saveprofile');
         route::resource('/rekrutmen', RekrutmenController::class)->names([

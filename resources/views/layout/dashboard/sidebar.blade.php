@@ -48,7 +48,7 @@
                 <ul class="menu-sub">
 
                     <li class="menu-item">
-                        <a href="{{ route('profile') }}" class="menu-link">
+                        <a href="{{ route('profileshow') }}" class="menu-link">
                             <div data-i18n="Without menu">Profile</div>
                         </a>
                     </li>

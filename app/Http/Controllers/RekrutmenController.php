@@ -139,6 +139,16 @@ class RekrutmenController extends Controller
             'rekrutmen' => $rekrutmen
         ]);
     }
+    public function profileshow()
+    {
+        $userId = Auth::id();
+
+        $rekrutmens = Rekrutmen::where('user_id', $userId)->latest()->first();
+
+        return view('dashboard.rekrutmen.profileshow', [
+            'rekrutmens' => $rekrutmens
+        ]);
+    }
 
     /**
      * Show the form for editing the specified resource.
