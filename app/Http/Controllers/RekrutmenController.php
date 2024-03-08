@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Spatie\PdfToImage\Pdf;
 
 class RekrutmenController extends Controller
 {
@@ -145,8 +146,64 @@ class RekrutmenController extends Controller
 
         $rekrutmens = Rekrutmen::where('user_id', $userId)->latest()->first();
 
+        if (!$rekrutmens) {
+            // Tidak ada rekrutmen yang ditemukan, lakukan penanganan kesalahan di sini
+            abort(404); // Contoh: Menampilkan halaman 404
+        }
+
+        $nik = $rekrutmens['nik']; // Ini bisa diambil dari model, database, atau nilai dinamis lainnya
+
+        $pdfFiles = [];
+
+        if ($nik) {
+            $namaFile = $rekrutmens['lamaran']; // Ini bisa diambil dari model, database, atau nilai dinamis lainnya
+            $namaFile2 = $rekrutmens['ijasa']; // Ini bisa diambil dari model, database, atau nilai dinamis lainnya
+            $namaFile3 = $rekrutmens['pernyataan']; // Ini bisa diambil dari model, database, atau nilai dinamis lainnya
+            $namaFile4 = $rekrutmens['vc']; // Ini bisa diambil dari model, database, atau nilai dinamis lainnya
+            $namaFile5 = $rekrutmens['ktp']; // Ini bisa diambil dari model, database, atau nilai dinamis lainnya
+
+            // Konstruksi path hanya jika nilai-nilai yang dibutuhkan tidak kosong
+            if ($namaFile) {
+                $pdfFiles[] = public_path('storage/berkas/' . $nik . '/' . $namaFile);
+            }
+
+            if ($namaFile2) {
+                $pdfFiles[] = public_path('storage/berkas/' . $nik . '/' . $namaFile2);
+            }
+
+            if ($namaFile3) {
+                $pdfFiles[] = public_path('storage/berkas/' . $nik . '/' . $namaFile3);
+            }
+
+            if ($namaFile4) {
+                $pdfFiles[] = public_path('storage/berkas/' . $nik . '/' . $namaFile4);
+            }
+
+            if ($namaFile5) {
+                $pdfFiles[] = public_path('storage/berkas/' . $nik . '/' . $namaFile5);
+            }
+        }
+        //public\storage\berkas\pdf\acara.pdf
+        // dd($pdfFiles);
+        $base64Images = [];
+
+        foreach ($pdfFiles as $pdfFile) {
+            $pdf = new Pdf($pdfFile);
+            $pdf->setOutputFormat('png'); // Menetapkan format output menjadi PNG
+            $pdf->saveImage(storage_path('app/public/images/' . basename($pdfFile) . '.png'));
+
+            // Mendapatkan path gambar PNG
+            $pngPath = public_path('images/' . basename($pdfFile) . '.png');
+
+            // Mengonversi path gambar PNG menjadi base64
+            $base64Image = 'data:image/png;base64,' . base64_encode(file_get_contents($pngPath));
+
+            $base64Images[] = $base64Image;
+        }
+
         return view('dashboard.rekrutmen.profileshow', [
-            'rekrutmens' => $rekrutmens
+            'rekrutmens' => $rekrutmens,
+            'base64Images' => $base64Images
         ]);
     }
 
