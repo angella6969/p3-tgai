@@ -9,7 +9,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Barryvdh\Snappy\Facades\SnappyImage;
+use Barryvdh\Snappy\Facades\SnappyPdf;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 use Spatie\PdfToImage\Pdf;
+use Imagick;
 
 class RekrutmenController extends Controller
 {
@@ -156,56 +162,41 @@ class RekrutmenController extends Controller
         $pdfFiles = [];
 
         if ($nik) {
-            $namaFile = $rekrutmens['lamaran']; // Ini bisa diambil dari model, database, atau nilai dinamis lainnya
-            $namaFile2 = $rekrutmens['ijasa']; // Ini bisa diambil dari model, database, atau nilai dinamis lainnya
-            $namaFile3 = $rekrutmens['pernyataan']; // Ini bisa diambil dari model, database, atau nilai dinamis lainnya
-            $namaFile4 = $rekrutmens['vc']; // Ini bisa diambil dari model, database, atau nilai dinamis lainnya
-            $namaFile5 = $rekrutmens['ktp']; // Ini bisa diambil dari model, database, atau nilai dinamis lainnya
+            $namaFiles = [
+                $rekrutmens['lamaran'],
+                $rekrutmens['ijasa'],
+                $rekrutmens['pernyataan'],
+                $rekrutmens['vc'],
+                $rekrutmens['ktp']
+            ];
 
-            // Konstruksi path hanya jika nilai-nilai yang dibutuhkan tidak kosong
-            if ($namaFile) {
-                $pdfFiles[] = public_path('storage/berkas/' . $nik . '/' . $namaFile);
-            }
-
-            if ($namaFile2) {
-                $pdfFiles[] = public_path('storage/berkas/' . $nik . '/' . $namaFile2);
-            }
-
-            if ($namaFile3) {
-                $pdfFiles[] = public_path('storage/berkas/' . $nik . '/' . $namaFile3);
-            }
-
-            if ($namaFile4) {
-                $pdfFiles[] = public_path('storage/berkas/' . $nik . '/' . $namaFile4);
-            }
-
-            if ($namaFile5) {
-                $pdfFiles[] = public_path('storage/berkas/' . $nik . '/' . $namaFile5);
+            foreach ($namaFiles as $namaFile) {
+                if ($namaFile) {
+                    $pdfFiles[] = public_path('storage/berkas/' . $nik . '/' . $namaFile);
+                }
             }
         }
-        //public\storage\berkas\pdf\acara.pdf
-        // dd($pdfFiles);
+
         $base64Images = [];
 
         foreach ($pdfFiles as $pdfFile) {
-            $pdf = new Pdf($pdfFile);
-            $pdf->setOutputFormat('png'); // Menetapkan format output menjadi PNG
-            $pdf->saveImage(storage_path('app/public/images/' . basename($pdfFile) . '.png'));
+            $imgExt = new Imagick();
+            $imgExt->setResolution(300, 300); // Set resolusi gambar
+            $imgExt->readImage($pdfFile);
 
-            // Mendapatkan path gambar PNG
-            $pngPath = public_path('images/' . basename($pdfFile) . '.png');
-
-            // Mengonversi path gambar PNG menjadi base64
-            $base64Image = 'data:image/png;base64,' . base64_encode(file_get_contents($pngPath));
-
-            $base64Images[] = $base64Image;
+            // Konversi setiap halaman PDF menjadi gambar PNG
+            foreach ($imgExt as $image) {
+                $image->setImageFormat('png');
+                $base64Images[] = 'data:image/png;base64,' . base64_encode($image->getImageBlob());
+            }
         }
-
-        return view('dashboard.rekrutmen.profileshow', [
+     
+        return view(' dashboard.rekrutmen.profileShow', [
             'rekrutmens' => $rekrutmens,
             'base64Images' => $base64Images
         ]);
     }
+
 
     /**
      * Show the form for editing the specified resource.
