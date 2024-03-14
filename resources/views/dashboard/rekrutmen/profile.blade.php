@@ -41,38 +41,52 @@
                                     <input type="text" hidden value="{{ auth()->user()->id }}" name="user_id">
                                     <x-input label="Nama" icon=""
                                         value1="{{ old('nama', $rekrutmens->nama ?? null) }}" nama="nama" />
+
                                     <x-input label="E-mail" icon=""
                                         value1="{{ old('email', $rekrutmens->email ?? null) }}" nama="email" />
+
                                     <x-input label="NIK" icon=""
                                         value1="{{ old('nik', $rekrutmens->nik ?? null) }}" nama="nik" />
+
                                     <x-input label="Nomor HP" icon=""
                                         value1="{{ old('nohp', $rekrutmens->nohp ?? null) }}" nama="nohp" />
+
                                     <x-t_area judul="Alamat KTP" nama="alamatktp"
                                         nilai="{{ old('alamatktp', $rekrutmens->alamatktp ?? null) }}"
                                         placeholder="Alamat Sesuai KTP Asli"></x-t_area>
+
                                     <x-t_area judul="Alamat Domisili" nama="alamatdomisili"
                                         nilai="{{ old('alamatdomisili', $rekrutmens->alamatdomisili ?? null) }}"
                                         placeholder="Alamat Sesuai Tempat Domisili"></x-t_area>
-                                    <x-upload judul="Surat Lamaran" nama="lamaran" nilai="{{ old('nama') }}"
+
+                                    <x-upload judul="Surat Lamaran" nama="lamaran"
+                                        nilai="{{ old('lamaran', $rekrutmens->lamaran ?? null) }}"
                                         detail="Scan File PNG, Max 5-MB"></x-upload>
 
-                                    <x-upload judul="Ijasah" nama="ijasa" nilai="{{ old('nama') }}"
+                                    <x-upload judul="Ijasah" nama="ijasa"
+                                        nilai="{{ old('ijasa', $rekrutmens->ijasa ?? null) }}"
                                         detail="Scan File PNG, Max 5-MB"></x-upload>
 
-                                    <x-upload judul="Surat Pernyataan" nama="pernyataan" nilai="{{ old('nama') }}"
+                                    <x-upload judul="Surat Pernyataan" nama="pernyataan"
+                                        nilai="{{ old('pernyataan', $rekrutmens->pernyataan ?? null) }}"
                                         detail="Scan File PNG, Max 5-MB"></x-upload>
 
                                     <x-upload judul="Daftar Riwayat Hidup dan Refrensi Kerja ( CV )" nama="cv"
-                                        nilai="{{ old('nama') }}" detail="Scan File PNG, Max 5-MB"></x-upload>
-
-                                    <x-upload judul="KTP" nama="ktp" nilai="{{ old('nama') }}"
+                                        nilai="{{ old('cv', $rekrutmens->cv ?? null) }}"
                                         detail="Scan File PNG, Max 5-MB"></x-upload>
 
-                                    <x-upload judul="SIM A/C" nama="sim" nilai="{{ old('nama') }}"
+                                    <x-upload judul="KTP" nama="ktp"
+                                        nilai="{{ old('ktp', $rekrutmens->ktp ?? null) }}"
                                         detail="Scan File PNG, Max 5-MB"></x-upload>
 
-                                    <x-upload judul="NPWP" nama="npwp" nilai="{{ old('nama') }}"
+                                    <x-upload judul="SIM A/C" nama="sim"
+                                        nilai="{{ old('sim', $rekrutmens->sim ?? null) }}"
                                         detail="Scan File PNG, Max 5-MB"></x-upload>
+
+                                    <x-upload judul="NPWP" nama="npwp"
+                                        nilai="{{ old('npwp', $rekrutmens->npwp ?? null) }}"
+                                        detail="Scan File PNG, Max 5-MB"></x-upload>
+
                                     <div class="mt-2">
                                         <button type="submit" class="btn btn-primary me-2">Save changes</button>
                                         <button type="reset" class="btn btn-outline-secondary">Reset</button>

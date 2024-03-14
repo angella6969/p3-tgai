@@ -16,7 +16,6 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 use Spatie\PdfToImage\Pdf;
 use Imagick;
-use Illuminate\Support\Facades\File;
 
 class RekrutmenController extends Controller
 {
@@ -43,15 +42,14 @@ class RekrutmenController extends Controller
     public function saveprofile(Request $request)
     {
 
-
         $validatedData = $request->validate([
-            'nama' => ['required'],
-            'user_id' => ['required'],
-            'email' => ['required'],
-            'nik' => ['required'],
-            'nohp' => ['required'],
-            'alamatktp' => ['required'],
-            'alamatdomisili' => ['required'],
+            'nama' => ['nullable'],
+            'user_id' => ['nullable'],
+            'email' => ['nullable'],
+            'nik' => ['nullable'],
+            'nohp' => ['nullable'],
+            'alamatktp' => ['nullable'],
+            'alamatdomisili' => ['nullable'],
             'lamaran' => ['file', 'max:1024', 'mimetypes:image/jpeg,image/png,image/gif,application/pdf', 'nullable'],
             'ijasa' => ['file', 'max:1024', 'mimetypes:image/jpeg,image/png,image/gif,application/pdf', 'nullable'],
             'pernyataan' => ['file', 'max:1024', 'mimetypes:image/jpeg,image/png,image/gif,application/pdf', 'nullable'],
@@ -60,44 +58,63 @@ class RekrutmenController extends Controller
             'sim' => ['file', 'max:1024', 'mimetypes:image/jpeg,image/png,image/gif,application/pdf', 'nullable'],
             'npwp' => ['file', 'max:1024', 'mimetypes:image/jpeg,image/png,image/gif,application/pdf', 'nullable'],
         ]);
+        // dd($validatedData);
 
         DB::beginTransaction();
         try {
             $rekrutmen = Rekrutmen::where('nik', $validatedData['nik'])->first();
 
-            if ($rekrutmen) {
-                // Jika data rekrutmen sudah ada, lakukan update
-                $rekrutmen->update($validatedData);
-
-                // Lakukan pembaruan jalur file jika NIK berubah
-                if ($rekrutmen->wasChanged('nik')) {
-                    $oldPath = storage_path('app/public/berkas/' . $rekrutmen->getOriginal('nik'));
-                    $newPath = storage_path('app/public/berkas/' . $validatedData['nik']);
-
-                    // Lakukan pemindahan berkas
-                    if (file_exists($oldPath)) {
-                        // Pastikan path lama ada sebelum memindahkannya
-                        if (!file_exists($newPath)) {
-                            // Buat direktori baru jika belum ada
-                            mkdir($newPath, 0755, true);
-                        }
-                        // Pindahkan berkas dari path lama ke path baru
-                        File::move($oldPath, $newPath);
-                    }
-                }
-            } else {
-                // Jika data rekrutmen belum ada, lakukan insert
-                $rekrutmen = Rekrutmen::create($validatedData);
-            }
-
-            // Proses penyimpanan file jika diperlukan
             if ($request->hasFile('lamaran')) {
                 $file = $request->file('lamaran');
                 $fileName = $file->getClientOriginalName(); // Mengambil nama asli file
                 $path = $file->storeAs('public/berkas/' . $validatedData['nik'], $fileName); // Simpan file dengan nama asli
                 $validatedData['lamaran'] = $fileName;
             }
-            // Lakukan hal yang sama untuk file lainnya (ijasa, pernyataan, cv, ktp, sim, npwp)
+            if ($request->hasFile('ijasa')) {
+                $file = $request->file('ijasa');
+                $fileName = $file->getClientOriginalName(); // Mengambil nama asli file
+                $path = $file->storeAs('public/berkas/' . $validatedData['nik'], $fileName); // Simpan file dengan nama asli
+                $validatedData['ijasa'] = $fileName;
+            }
+            if ($request->hasFile('pernyataan')) {
+                $file = $request->file('pernyataan');
+                $fileName = $file->getClientOriginalName(); // Mengambil nama asli file
+                $path = $file->storeAs('public/berkas/' . $validatedData['nik'], $fileName); // Simpan file dengan nama asli
+                $validatedData['pernyataan'] = $fileName;
+            }
+            if ($request->hasFile('cv')) {
+                $file = $request->file('cv');
+                $fileName = $file->getClientOriginalName(); // Mengambil nama asli file
+                $path = $file->storeAs('public/berkas/' . $validatedData['nik'], $fileName); // Simpan file dengan nama asli
+                $validatedData['cv'] = $fileName;
+            }
+            if ($request->hasFile('ktp')) {
+                $file = $request->file('ktp');
+                $fileName = $file->getClientOriginalName(); // Mengambil nama asli file
+                $path = $file->storeAs('public/berkas/' . $validatedData['nik'], $fileName); // Simpan file dengan nama asli
+                $validatedData['ktp'] = $fileName;
+            }
+            if ($request->hasFile('sim')) {
+                $file = $request->file('sim');
+                $fileName = $file->getClientOriginalName(); // Mengambil nama asli file
+                $path = $file->storeAs('public/berkas/' . $validatedData['nik'], $fileName); // Simpan file dengan nama asli
+                $validatedData['sim'] = $fileName;
+            }
+            if ($request->hasFile('npwp')) {
+                $file = $request->file('npwp');
+                $fileName = $file->getClientOriginalName(); // Mengambil nama asli file
+                $path = $file->storeAs('public/berkas/' . $validatedData['nik'], $fileName); // Simpan file dengan nama asli
+                $validatedData['npwp'] = $fileName;
+            }
+            
+            if ($rekrutmen) {
+                // Jika data rekrutmen sudah ada, lakukan update
+                $rekrutmen->update($validatedData);
+            } else {
+                // Jika data rekrutmen belum ada, lakukan insert
+                $rekrutmen = Rekrutmen::create($validatedData);
+            }
+            // Rekrutmen::create($validatedData);
 
             DB::commit();
             return redirect('/rekrutmen')->with('success', 'Data berhasil disimpan.');
