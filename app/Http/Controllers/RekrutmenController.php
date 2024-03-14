@@ -67,51 +67,46 @@ class RekrutmenController extends Controller
                 $file = $request->file('lamaran');
                 $fileName = $file->getClientOriginalName(); // Mengambil nama asli file
                 $path = $file->storeAs('public/berkas/' . $validatedData['nik'], $fileName); // Simpan file dengan nama asli
-                $validatedData['lamaran'] = $path;
+                $validatedData['lamaran'] = $fileName;
             }
             if ($request->hasFile('ijasa')) {
                 $file = $request->file('ijasa');
                 $fileName = $file->getClientOriginalName(); // Mengambil nama asli file
                 $path = $file->storeAs('public/berkas/' . $validatedData['nik'], $fileName); // Simpan file dengan nama asli
-                $validatedData['ijasa'] = $path;
+                $validatedData['ijasa'] = $fileName;
             }
             if ($request->hasFile('pernyataan')) {
                 $file = $request->file('pernyataan');
                 $fileName = $file->getClientOriginalName(); // Mengambil nama asli file
                 $path = $file->storeAs('public/berkas/' . $validatedData['nik'], $fileName); // Simpan file dengan nama asli
-                $validatedData['pernyataan'] = $path;
+                $validatedData['pernyataan'] = $fileName;
             }
             if ($request->hasFile('cv')) {
                 $file = $request->file('cv');
                 $fileName = $file->getClientOriginalName(); // Mengambil nama asli file
                 $path = $file->storeAs('public/berkas/' . $validatedData['nik'], $fileName); // Simpan file dengan nama asli
-                $validatedData['cv'] = $path;
+                $validatedData['cv'] = $fileName;
             }
             if ($request->hasFile('ktp')) {
                 $file = $request->file('ktp');
                 $fileName = $file->getClientOriginalName(); // Mengambil nama asli file
                 $path = $file->storeAs('public/berkas/' . $validatedData['nik'], $fileName); // Simpan file dengan nama asli
-                $validatedData['ktp'] = $path;
+                $validatedData['ktp'] = $fileName;
             }
             if ($request->hasFile('sim')) {
                 $file = $request->file('sim');
                 $fileName = $file->getClientOriginalName(); // Mengambil nama asli file
                 $path = $file->storeAs('public/berkas/' . $validatedData['nik'], $fileName); // Simpan file dengan nama asli
-                $validatedData['sim'] = $path;
+                $validatedData['sim'] = $fileName;
             }
             if ($request->hasFile('npwp')) {
                 $file = $request->file('npwp');
                 $fileName = $file->getClientOriginalName(); // Mengambil nama asli file
                 $path = $file->storeAs('public/berkas/' . $validatedData['nik'], $fileName); // Simpan file dengan nama asli
-                $validatedData['npwp'] = $path;
+                $validatedData['npwp'] = $fileName;
             }
 
-
-
             Rekrutmen::create($validatedData);
-            // dd($validatedData);
-
-
             DB::commit();
             return redirect('/rekrutmen')->with('success', 'Data berhasil disimpan.');
         } catch (\Exception $e) {
@@ -166,13 +161,14 @@ class RekrutmenController extends Controller
                 $rekrutmens['lamaran'],
                 $rekrutmens['ijasa'],
                 $rekrutmens['pernyataan'],
-                $rekrutmens['vc'],
+                $rekrutmens['cv'],
                 $rekrutmens['ktp']
             ];
 
             foreach ($namaFiles as $namaFile) {
                 if ($namaFile) {
-                    $pdfFiles[] = public_path('storage/berkas/' . $nik . '/' . $namaFile);
+                    //  $pdfFiles[] = public_path('storage/berkas/' . $nik . '/' . $namaFile);
+                    $pdfFiles[] = storage_path('/app/public/berkas/' . $nik . '/' . $namaFile);
                 }
             }
         }
@@ -190,7 +186,7 @@ class RekrutmenController extends Controller
                 $base64Images[] = 'data:image/png;base64,' . base64_encode($image->getImageBlob());
             }
         }
-     
+
         return view(' dashboard.rekrutmen.profileShow', [
             'rekrutmens' => $rekrutmens,
             'base64Images' => $base64Images
