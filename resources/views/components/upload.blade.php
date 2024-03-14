@@ -6,14 +6,14 @@
         <!-- Jika nilai kosong atau null, sembunyikan -->
     @else
         <!-- Jika nilai tidak kosong, tampilkan link ke PDF yang sudah ada -->
-        <a href="{{ asset('storage/' . $nilai) }}" target="_blank">View PDF</a>
+        <a href="{{ asset('storage/' . substr($nilai, 6)) }}" target="_blank">View PDF</a>
     @endempty --}}
 
     <input type="file" class="form-control @error('$nama') is-invalid @enderror" id="{{ $nama }}"
         onchange="validatePdf(this)" name="{{ $nama }}" accept="application/pdf">
     <h6>PDF Max 1 MB</h6>
 </div>
-{{-- public\storage\berkas\3310100912950002\RINCIAN KERTAS KERJA SATKER.pdf --}}
+{{--  --}}
 <script>
     function validatePdf(input) {
         const file = input.files[0];

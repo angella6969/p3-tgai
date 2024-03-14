@@ -106,7 +106,7 @@ class RekrutmenController extends Controller
                 $path = $file->storeAs('public/berkas/' . $validatedData['nik'], $fileName); // Simpan file dengan nama asli
                 $validatedData['npwp'] = $fileName;
             }
-            
+
             if ($rekrutmen) {
                 // Jika data rekrutmen sudah ada, lakukan update
                 $rekrutmen->update($validatedData);
@@ -161,44 +161,44 @@ class RekrutmenController extends Controller
             abort(404); // Contoh: Menampilkan halaman 404
         }
 
-        $nik = $rekrutmens['nik']; // Ini bisa diambil dari model, database, atau nilai dinamis lainnya
+        // $nik = $rekrutmens['nik']; // Ini bisa diambil dari model, database, atau nilai dinamis lainnya
 
-        $pdfFiles = [];
+        // $pdfFiles = [];
 
-        if ($nik) {
-            $namaFiles = [
-                $rekrutmens['lamaran'],
-                $rekrutmens['ijasa'],
-                $rekrutmens['pernyataan'],
-                $rekrutmens['cv'],
-                $rekrutmens['ktp']
-            ];
+        // if ($nik) {
+        //     $namaFiles = [
+        //         $rekrutmens['lamaran'],
+        //         $rekrutmens['ijasa'],
+        //         $rekrutmens['pernyataan'],
+        //         $rekrutmens['cv'],
+        //         $rekrutmens['ktp']
+        //     ];
 
-            foreach ($namaFiles as $namaFile) {
-                if ($namaFile) {
-                    //  $pdfFiles[] = public_path('storage/berkas/' . $nik . '/' . $namaFile);
-                    $pdfFiles[] = storage_path('/app/public/berkas/' . $nik . '/' . $namaFile);
-                }
-            }
-        }
+        //     foreach ($namaFiles as $namaFile) {
+        //         if ($namaFile) {
+        //             //  $pdfFiles[] = public_path('storage/berkas/' . $nik . '/' . $namaFile);
+        //             $pdfFiles[] = storage_path('/app/public/berkas/' . $nik . '/' . $namaFile);
+        //         }
+        //     }
+        // }
 
-        $base64Images = [];
+        // $base64Images = [];
 
-        foreach ($pdfFiles as $pdfFile) {
-            $imgExt = new Imagick();
-            $imgExt->setResolution(300, 300); // Set resolusi gambar
-            $imgExt->readImage($pdfFile);
+        // foreach ($pdfFiles as $pdfFile) {
+        //     $imgExt = new Imagick();
+        //     $imgExt->setResolution(300, 300); // Set resolusi gambar
+        //     $imgExt->readImage($pdfFile);
 
             // Konversi setiap halaman PDF menjadi gambar PNG
-            foreach ($imgExt as $image) {
-                $image->setImageFormat('png');
-                $base64Images[] = 'data:image/png;base64,' . base64_encode($image->getImageBlob());
-            }
-        }
+        //     foreach ($imgExt as $image) {
+        //         $image->setImageFormat('png');
+        //         $base64Images[] = 'data:image/png;base64,' . base64_encode($image->getImageBlob());
+        //     }
+        // }
 
         return view(' dashboard.rekrutmen.profileShow', [
             'rekrutmens' => $rekrutmens,
-            'base64Images' => $base64Images
+            // 'base64Images' => $base64Images
         ]);
     }
 

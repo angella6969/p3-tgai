@@ -41,17 +41,88 @@
                                             <textarea cols="50" rows="3" style="width: 100%;" disabled>{{ $rekrutmens->alamatdomisili }}</textarea>
                                         </div>
                                     </div>
+
                                 </div>
-                            </div>
-                            <div>
-                                <a href="/pro"class="btn btn-primary">Edit</a>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="">Cv</label>
+                                    <div class="col-sm-10">
+                                        <iframe
+                                            src="https://docs.google.com/viewer?url={{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->cv) }}&embedded=true"
+                                            style="width:100%; height:500px;" frameborder="0"></iframe>
+                                        <p>Maaf, browser jika Anda tidak mendukung penampilan file PDF. Anda dapat <a
+                                                href="{{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->cv) }}">mengunduh
+                                                file</a> untuk melihatnya.</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="">Surat Lamaran</label>
+                                    <div class="col-sm-10">
+                                        <iframe
+                                            src="https://docs.google.com/viewer?url={{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->lamaran) }}&embedded=true"
+                                            style="width:100%; height:500px;" frameborder="0"></iframe>
+                                        <p>Maaf, browser jika Anda tidak mendukung penampilan file PDF. Anda dapat <a
+                                                href="{{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->lamaran) }}">mengunduh
+                                                file</a> untuk melihatnya.</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="">Surat Pernyataan</label>
+                                    <div class="col-sm-10">
+                                        <iframe
+                                            src="https://docs.google.com/viewer?url={{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->pernyataan) }}&embedded=true"
+                                            style="width:100%; height:500px;" frameborder="0"></iframe>
+                                        <p>Maaf, browser jika Anda tidak mendukung penampilan file PDF. Anda dapat <a
+                                                href="{{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->pernyataan) }}">mengunduh
+                                                file</a> untuk melihatnya.</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="">Surat Ijasa</label>
+                                    <div class="col-sm-10">
+                                        < <iframe
+                                            src="https://docs.google.com/viewer?url={{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->ijasa) }}&embedded=true"
+                                            style="width:100%; height:500px;" frameborder="0"></iframe>
+                                            <p>Maaf, browser jika Anda tidak mendukung penampilan file PDF. Anda dapat <a
+                                                    href="{{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->ijasa) }}">mengunduh
+                                                    file</a> untuk melihatnya.</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="">Kartu NPWP</label>
+                                    <div class="col-sm-10">
+                                        <iframe
+                                            src="https://docs.google.com/viewer?url={{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->npwp) }}&embedded=true"
+                                            style="width:100%; height:500px;" frameborder="0"></iframe>
+                                        <p>Maaf, browser jika Anda tidak mendukung penampilan file PDF. Anda dapat <a
+                                                href="{{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->npwp) }}">mengunduh
+                                                file</a> untuk melihatnya.</p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="">Kartu KTP</label>
+                                    <div class="col-sm-10">
+                                        <iframe
+                                            src="https://docs.google.com/viewer?url={{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->ktp) }}&embedded=true"
+                                            style="width:100%; height:500px;" frameborder="0"></iframe>
+                                        <p>Maaf, browser jika Anda tidak mendukung penampilan file PDF. Anda dapat <a
+                                                href="{{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->ktp) }}">mengunduh
+                                                file</a> untuk melihatnya.</p>
+                                    </div>
+                                </div>
+
+                                {{-- @foreach ($base64Images as $base64Image)
+                                <img class="img-fluid" src="{{ $base64Image }}" alt="PDF Image">
+                            @endforeach --}}
+
+                                <div class="mt-3">
+                                    <a href="/pro"class="btn btn-primary">Edit</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- / Content -->
         </div>
-        <!-- / Content -->
-    </div>
-    <x-alert></x-alert>
-@endsection
+        <x-alert></x-alert>
+    @endsection
