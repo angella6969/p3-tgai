@@ -39,13 +39,19 @@
                                 @csrf
                                 <div class="row">
                                     <input type="text" hidden value="{{ auth()->user()->id }}" name="user_id">
-                                    <x-input label="Nama" icon="" value1="{{ old('nama') }}" nama="nama" />
-                                    <x-input label="E-mail" icon="" value1="{{ old('nama') }}" nama="email" />
-                                    <x-input label="NIK" icon="" value1="{{ old('nama') }}" nama="nik" />
-                                    <x-input label="Nomor HP" icon="" value1="{{ old('nama') }}" nama="nohp" />
-                                    <x-t_area judul="Alamat KTP" nama="alamatktp" nilai="{{ old('nama') }}"
+                                    <x-input label="Nama" icon=""
+                                        value1="{{ old('nama', $rekrutmens->nama ?? null) }}" nama="nama" />
+                                    <x-input label="E-mail" icon=""
+                                        value1="{{ old('email', $rekrutmens->email ?? null) }}" nama="email" />
+                                    <x-input label="NIK" icon=""
+                                        value1="{{ old('nik', $rekrutmens->nik ?? null) }}" nama="nik" />
+                                    <x-input label="Nomor HP" icon=""
+                                        value1="{{ old('nohp', $rekrutmens->nohp ?? null) }}" nama="nohp" />
+                                    <x-t_area judul="Alamat KTP" nama="alamatktp"
+                                        nilai="{{ old('alamatktp', $rekrutmens->alamatktp ?? null) }}"
                                         placeholder="Alamat Sesuai KTP Asli"></x-t_area>
-                                    <x-t_area judul="Alamat Domisili" nama="alamatdomisili" nilai="{{ old('nama') }}"
+                                    <x-t_area judul="Alamat Domisili" nama="alamatdomisili"
+                                        nilai="{{ old('alamatdomisili', $rekrutmens->alamatdomisili ?? null) }}"
                                         placeholder="Alamat Sesuai Tempat Domisili"></x-t_area>
                                     <x-upload judul="Surat Lamaran" nama="lamaran" nilai="{{ old('nama') }}"
                                         detail="Scan File PNG, Max 5-MB"></x-upload>

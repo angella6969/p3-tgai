@@ -16,15 +16,27 @@ class Rekrutmen extends Model
         parent::boot();
 
         static::updating(function ($model) {
-            $oldNIK = $model->getOriginal('nik');
-            $newNIK = $model->nik;
+            // Periksa apakah nilai 'nik' berubah
+            if ($model->isDirty('nik')) {
+                $oldNIK = $model->getOriginal('nik');
+                $newNIK = $model->nik;
 
-            if ($oldNIK !== $newNIK) {
-                $oldPath = 'public/images/' . $oldNIK;
-                $newPath = 'public/images/' . $newNIK;
+                // Bangun jalur lama dan baru
+                $oldPath = storage_path('app/public/berkas/' . $oldNIK);
+                $newPath = storage_path('app/public/berkas/' . $newNIK);
 
-                // Ubah path file
-                Storage::move($oldPath, $newPath);
+                // Periksa apakah jalur lama ada dan pindahkan berkas jika iya
+                if (file_exists($oldPath)) {
+                    // Pastikan jalur baru ada sebelum memindahkan
+                    if (!file_exists($newPath)) {
+                        mkdir($newPath, 0755, true);
+                    }
+                    // Pindahkan berkas dari jalur lama ke jalur baru
+                    $files = Storage::allFiles('public/berkas/' . $oldNIK);
+                    foreach ($files as $file) {
+                        Storage::move($file, str_replace('berkas/' . $oldNIK, 'berkas/' . $newNIK, $file));
+                    }
+                }
             }
         });
     }
