@@ -2,14 +2,14 @@
     <label for="{{ $nama }}">{{ $judul }}</label>
     <input type="hidden" name="oldPdf" id="oldPdf" value="{{ $nilai }}">
 
-    {{-- @empty($nilai)
+    @empty($nilai)
         <!-- Jika nilai kosong atau null, sembunyikan -->
     @else
         <!-- Jika nilai tidak kosong, tampilkan link ke PDF yang sudah ada -->
-        <a href="{{ asset('storage/' . substr($nilai, 6)) }}" target="_blank">View PDF</a>
-    @endempty --}}
+        <a href="{{ $nilai }}" target="_blank">View PDF</a>
+    @endempty
 
-    <input type="file" class="form-control @error('$nama') is-invalid @enderror" id="{{ $nama }}"
+    <input type="file" class="form-control @error('$nama') is-invalid @enderror" id="{{ $nama }}" required
         onchange="validatePdf(this)" name="{{ $nama }}" accept="application/pdf">
     <h6>PDF Max 1 MB</h6>
 </div>

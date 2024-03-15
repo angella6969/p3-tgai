@@ -43,13 +43,13 @@
                                     </div>
 
                                 </div>
-                                <div class="row mb-3">
+                                {{-- <div class="row mb-3">
                                     <label class="col-sm-2 col-form-label" for="">Cv</label>
                                     <div class="col-sm-10">
                                         <iframe
                                             src="https://docs.google.com/viewer?url={{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->cv) }}&embedded=true"
                                             style="width:100%; height:500px;" frameborder="0"></iframe>
-                                        <p>Maaf, browser jika Anda tidak mendukung penampilan file PDF. Anda dapat <a
+                                        <p>Maaf, Jika browser Anda tidak mendukung penampilan file PDF. Anda dapat <a
                                                 href="{{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->cv) }}">mengunduh
                                                 file</a> untuk melihatnya.</p>
                                     </div>
@@ -60,7 +60,7 @@
                                         <iframe
                                             src="https://docs.google.com/viewer?url={{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->lamaran) }}&embedded=true"
                                             style="width:100%; height:500px;" frameborder="0"></iframe>
-                                        <p>Maaf, browser jika Anda tidak mendukung penampilan file PDF. Anda dapat <a
+                                        <p>Maaf, Jika browser Anda tidak mendukung penampilan file PDF. Anda dapat <a
                                                 href="{{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->lamaran) }}">mengunduh
                                                 file</a> untuk melihatnya.</p>
                                     </div>
@@ -71,7 +71,7 @@
                                         <iframe
                                             src="https://docs.google.com/viewer?url={{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->pernyataan) }}&embedded=true"
                                             style="width:100%; height:500px;" frameborder="0"></iframe>
-                                        <p>Maaf, browser jika Anda tidak mendukung penampilan file PDF. Anda dapat <a
+                                        <p>Maaf, Jika browser Anda tidak mendukung penampilan file PDF. Anda dapat <a
                                                 href="{{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->pernyataan) }}">mengunduh
                                                 file</a> untuk melihatnya.</p>
                                     </div>
@@ -79,12 +79,12 @@
                                 <div class="row mb-3">
                                     <label class="col-sm-2 col-form-label" for="">Surat Ijasa</label>
                                     <div class="col-sm-10">
-                                        < <iframe
+                                        <iframe
                                             src="https://docs.google.com/viewer?url={{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->ijasa) }}&embedded=true"
                                             style="width:100%; height:500px;" frameborder="0"></iframe>
-                                            <p>Maaf, browser jika Anda tidak mendukung penampilan file PDF. Anda dapat <a
-                                                    href="{{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->ijasa) }}">mengunduh
-                                                    file</a> untuk melihatnya.</p>
+                                        <p>Maaf, Jika browser Anda tidak mendukung penampilan file PDF. Anda dapat <a
+                                                href="{{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->ijasa) }}">mengunduh
+                                                file</a> untuk melihatnya.</p>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -93,7 +93,7 @@
                                         <iframe
                                             src="https://docs.google.com/viewer?url={{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->npwp) }}&embedded=true"
                                             style="width:100%; height:500px;" frameborder="0"></iframe>
-                                        <p>Maaf, browser jika Anda tidak mendukung penampilan file PDF. Anda dapat <a
+                                        <p>Maaf, Jika browser Anda tidak mendukung penampilan file PDF. Anda dapat <a
                                                 href="{{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->npwp) }}">mengunduh
                                                 file</a> untuk melihatnya.</p>
                                     </div>
@@ -104,9 +104,203 @@
                                         <iframe
                                             src="https://docs.google.com/viewer?url={{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->ktp) }}&embedded=true"
                                             style="width:100%; height:500px;" frameborder="0"></iframe>
-                                        <p>Maaf, browser jika Anda tidak mendukung penampilan file PDF. Anda dapat <a
+                                        <p>Maaf, Jika browser Anda tidak mendukung penampilan file PDF. Anda dapat <a
                                                 href="{{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->ktp) }}">mengunduh
                                                 file</a> untuk melihatnya.</p>
+                                    </div>
+                                </div> --}}
+
+                                <div class="card">
+                                    <h5 class="card-header"></h5>
+                                    <div class="table-responsive text-nowrap">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Dokumen</th>
+                                                    <th>Nama</th>
+                                                    <th>Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-border-bottom-0">
+                                                <tr>
+                                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
+                                                        <strong>Surat Lamaran</strong>
+                                                    </td>
+                                                    <td data-file-input="lamaran">{{ $rekrutmens->lamaran }}</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button type="button"
+                                                                class="btn p-0 dropdown-toggle hide-arrow"
+                                                                data-bs-toggle="dropdown">
+                                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                {{-- <a class="dropdown-item edit-button"
+                                                                    href="javascript:void(0);" data-file-target="lamaran">
+                                                                    <i class="bx bx-edit-alt me-1"></i> Edit
+                                                                </a> --}}
+                                                                <a class="dropdown-item" target="_blank"
+                                                                    href="{{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->lamaran) }}">
+                                                                    <i class="bx bx-trash me-1"></i> Show
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
+                                                        <strong>Ijasa</strong>
+                                                    </td>
+                                                    <td data-file-input="ijasa">{{ $rekrutmens->ijasa }}</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button type="button"
+                                                                class="btn p-0 dropdown-toggle hide-arrow"
+                                                                data-bs-toggle="dropdown">
+                                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                {{-- <a class="dropdown-item edit-button"
+                                                                    href="javascript:void(0);" data-file-target="ijasa">
+                                                                    <i class="bx bx-edit-alt me-1"></i> Edit
+                                                                </a> --}}
+                                                                <a class="dropdown-item" target="_blank"
+                                                                    href="{{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->ijasa) }}">
+                                                                    <i class="bx bx-trash me-1"></i> Show
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
+                                                        <strong>Surat Penyataan</strong>
+                                                    </td>
+                                                    <td data-file-input="pernyataan">{{ $rekrutmens->pernyataan }}
+                                                    </td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button type="button"
+                                                                class="btn p-0 dropdown-toggle hide-arrow"
+                                                                data-bs-toggle="dropdown">
+                                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                {{-- <a class="dropdown-item edit-button"
+                                                                    href="javascript:void(0);"
+                                                                    data-file-target="pernyataan">
+                                                                    <i class="bx bx-edit-alt me-1"></i> Edit
+                                                                </a> --}}
+                                                                <a class="dropdown-item" target="_blank"
+                                                                    href="{{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->pernyataan) }}">
+                                                                    <i class="bx bx-trash me-1"></i> Show
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
+                                                        <strong>Daftar Riwayat Hidup dan Refrensi Kerja</strong>
+                                                    </td>
+                                                    <td data-file-input="cv">{{ $rekrutmens->cv }}</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button type="button"
+                                                                class="btn p-0 dropdown-toggle hide-arrow"
+                                                                data-bs-toggle="dropdown">
+                                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                {{-- <a class="dropdown-item edit-button"
+                                                                    href="javascript:void(0);" data-file-target="cv">
+                                                                    <i class="bx bx-edit-alt me-1"></i> Edit
+                                                                </a> --}}
+                                                                <a class="dropdown-item" target="_blank"
+                                                                    href="{{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->cv) }}">
+                                                                    <i class="bx bx-trash me-1"></i> Show
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
+                                                        <strong>Kartu Tanda Penduduk (KTP)</strong>
+                                                    </td>
+                                                    <td data-file-input="ktp">{{ $rekrutmens->ktp }}</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button type="button"
+                                                                class="btn p-0 dropdown-toggle hide-arrow"
+                                                                data-bs-toggle="dropdown">
+                                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                {{-- <a class="dropdown-item edit-button"
+                                                                    href="javascript:void(0);" data-file-target="ktp">
+                                                                    <i class="bx bx-edit-alt me-1"></i> Edit
+                                                                </a> --}}
+                                                                <a class="dropdown-item" target="_blank"
+                                                                    href="{{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->ktp) }}">
+                                                                    <i class="bx bx-trash me-1"></i> Show
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
+                                                        <strong>NPWP</strong>
+                                                    </td>
+                                                    <td data-file-input="npwp">{{ $rekrutmens->npwp }}</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button type="button"
+                                                                class="btn p-0 dropdown-toggle hide-arrow"
+                                                                data-bs-toggle="dropdown">
+                                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                {{-- <a class="dropdown-item edit-button"
+                                                                    href="javascript:void(0);" data-file-target="npwp">
+                                                                    <i class="bx bx-edit-alt me-1"></i> Edit
+                                                                </a> --}}
+                                                                <a class="dropdown-item" target="_blank"
+                                                                    href="{{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->npwp) }}">
+                                                                    <i class="bx bx-trash me-1"></i> Show
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
+                                                        <strong>Surat Ijin Mengemudi (SIM) A/C</strong>
+                                                    </td>
+                                                    <td data-file-input="sim">{{ $rekrutmens->sim }}</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button type="button"
+                                                                class="btn p-0 dropdown-toggle hide-arrow"
+                                                                data-bs-toggle="dropdown">
+                                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                {{-- <a class="dropdown-item edit-button"
+                                                                    href="javascript:void(0);" data-file-target="sim">
+                                                                    <i class="bx bx-edit-alt me-1"></i> Edit
+                                                                </a> --}}
+                                                                <a class="dropdown-item" target="_blank"
+                                                                    href="{{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->sim) }}">
+                                                                    <i class="bx bx-trash me-1"></i> Show
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
 
@@ -115,7 +309,8 @@
                             @endforeach --}}
 
                                 <div class="mt-3">
-                                    <a href="/pro"class="btn btn-primary">Edit</a>
+                                    <a
+                                        href="{{ route('rekrutmen.edit', ['rekrutman' => $rekrutmens->id]) }}"class="btn btn-primary">Edit</a>
                                 </div>
                             </div>
                         </div>

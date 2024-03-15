@@ -48,9 +48,15 @@
                 <ul class="menu-sub">
 
                     <li class="menu-item">
-                        <a href="{{ route('profileshow') }}" class="menu-link">
-                            <div data-i18n="Without menu">Profile</div>
-                        </a>
+                        @if ($rekrutmens ?? null)
+                            <a href="{{ route('profileshow') }}" class="menu-link">
+                                <div data-i18n="Without menu">Profile</div>
+                            </a>
+                        @else
+                            <a href="{{ route('profile') }}" class="menu-link">
+                                <div data-i18n="Without menu">Profile</div>
+                            </a>
+                        @endif
                     </li>
                     <li class="menu-item">
                         <a href="#" class="menu-link">

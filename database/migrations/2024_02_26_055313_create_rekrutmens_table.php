@@ -12,20 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('rekrutmens', function (Blueprint $table) {
-
-            // 'nama' => ['nullable'],
-            // 'email' => ['nullable'],
-            // 'nik' => ['nullable'],
-            // 'nohp' => ['nullable'],
-            // 'alamatktp' => ['nullable'],
-            // 'alamatdomisili' => ['nullable'],
-            // 'lamaran' => ['file', 'max:5120', 'mimetypes:image/jpeg,image/png,image/gif,application/pdf', 'nullable'],
-            // 'ijasa' => ['file', 'max:5120', 'mimetypes:image/jpeg,image/png,image/gif,application/pdf', 'nullable'],
-            // 'pernyataan' => ['file', 'max:5120', 'mimetypes:image/jpeg,image/png,image/gif,application/pdf', 'nullable'],
-            // 'cv' => ['file', 'max:5120', 'mimetypes:image/jpeg,image/png,image/gif,application/pdf', 'nullable'],
-            // 'ktp' => ['file', 'max:5120', 'mimetypes:image/jpeg,image/png,image/gif,application/pdf', 'nullable'],
-            // 'sim' => ['file', 'max:5120', 'mimetypes:image/jpeg,image/png,image/gif,application/pdf', 'nullable'],
-            // 'npwp' => ['file', 'max:5120', 'mimetypes:image/jpeg,image/png,image/gif,application/pdf', 'nullable'],
             $table->id();
             $table->foreignId('user_id')->nullable();
             $table->string('profile')->nullable();
@@ -40,6 +26,7 @@ return new class extends Migration
             $table->string('ijasa')->nullable();
             $table->string('pernyataan')->nullable();
             $table->string('cv')->nullable();
+            $table->string('sim')->nullable();
             $table->string('ktp')->nullable();
             $table->string('npwp')->nullable();
             $table->timestamps();

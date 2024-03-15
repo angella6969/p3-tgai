@@ -24,9 +24,11 @@ class RekrutmenController extends Controller
      */
     public function index()
     {
-        // $rekrutmen = Rekrutmen::latest()->get();
+        $userId = Auth::id();
+
+        $rekrutmens = Rekrutmen::where('user_id', $userId)->latest()->first();
         return view('dashboard.rekrutmen.index', [
-            // 'rekrutmens' => $rekrutmen
+            'rekrutmens' => $rekrutmens
         ]);
     }
     public function profile()
@@ -189,7 +191,7 @@ class RekrutmenController extends Controller
         //     $imgExt->setResolution(300, 300); // Set resolusi gambar
         //     $imgExt->readImage($pdfFile);
 
-            // Konversi setiap halaman PDF menjadi gambar PNG
+        // Konversi setiap halaman PDF menjadi gambar PNG
         //     foreach ($imgExt as $image) {
         //         $image->setImageFormat('png');
         //         $base64Images[] = 'data:image/png;base64,' . base64_encode($image->getImageBlob());
@@ -206,17 +208,111 @@ class RekrutmenController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Rekrutmen $rekrutmen)
+    public function edit(string $id)
     {
-        //
+        $rekrutmen = Rekrutmen::findOrFail($id);
+        return view('dashboard.rekrutmen.EditProfile', [
+            'rekrutmens' => $rekrutmen
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRekrutmenRequest $request, Rekrutmen $rekrutmen)
+    public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'nama' => ['nullable'],
+            // 'user_id' => ['nullable'],
+            'email' => ['nullable'],
+            'nik' => ['nullable'],
+            'nohp' => ['nullable'],
+            'alamatktp' => ['nullable'],
+            'alamatdomisili' => ['nullable'],
+            'lamaran' => ['file', 'max:1024', 'mimetypes:image/jpeg,image/png,image/gif,application/pdf', 'nullable'],
+            'ijasa' => ['file', 'max:1024', 'mimetypes:image/jpeg,image/png,image/gif,application/pdf', 'nullable'],
+            'pernyataan' => ['file', 'max:1024', 'mimetypes:image/jpeg,image/png,image/gif,application/pdf', 'nullable'],
+            'cv' => ['file', 'max:1024', 'mimetypes:image/jpeg,image/png,image/gif,application/pdf', 'nullable'],
+            'ktp' => ['file', 'max:1024', 'mimetypes:image/jpeg,image/png,image/gif,application/pdf', 'nullable'],
+            'sim' => ['file', 'max:1024', 'mimetypes:image/jpeg,image/png,image/gif,application/pdf', 'nullable'],
+            'npwp' => ['file', 'max:1024', 'mimetypes:image/jpeg,image/png,image/gif,application/pdf', 'nullable'],
+        ]);
+
+        $rekrutmen = Rekrutmen::findOrFail($id);
+        DB::beginTransaction();
+        try {
+            if ($request->hasFile('lamaran')) {
+                if ($rekrutmen->lamaran != null) {
+                    Storage::delete($rekrutmen->lamaran);
+                }
+                $file = $request->file('lamaran');
+                $fileName = $file->getClientOriginalName();
+                $path = $file->storeAs('public/berkas/' . $validatedData['nik'], $fileName);
+                $validatedData['lamaran'] = $fileName;
+            }
+            if ($request->hasFile('ijasa')) {
+                if ($rekrutmen->ijasa != null) {
+                    Storage::delete($rekrutmen->ijasa);
+                }
+                $file = $request->file('ijasa');
+                $fileName = $file->getClientOriginalName();
+                $path = $file->storeAs('public/berkas/' . $validatedData['nik'], $fileName);
+                $validatedData['ijasa'] = $fileName;
+            }
+            if ($request->hasFile('pernyataan')) {
+                if ($rekrutmen->pernyataan != null) {
+                    Storage::delete($rekrutmen->pernyataan);
+                }
+                $file = $request->file('pernyataan');
+                $fileName = $file->getClientOriginalName();
+                $path = $file->storeAs('public/berkas/' . $validatedData['nik'], $fileName);
+                $validatedData['pernyataan'] = $fileName;
+            }
+            if ($request->hasFile('cv')) {
+                if ($rekrutmen->cv != null) {
+                    Storage::delete($rekrutmen->cv);
+                }
+                $file = $request->file('cv');
+                $fileName = $file->getClientOriginalName();
+                $path = $file->storeAs('public/berkas/' . $validatedData['nik'], $fileName);
+                $validatedData['cv'] = $fileName;
+            }
+            if ($request->hasFile('ktp')) {
+                if ($rekrutmen->ktp != null) {
+                    Storage::delete($rekrutmen->ktp);
+                }
+                $file = $request->file('ktp');
+                $fileName = $file->getClientOriginalName();
+                $path = $file->storeAs('public/berkas/' . $validatedData['nik'], $fileName);
+                $validatedData['ktp'] = $fileName;
+            }
+            if ($request->hasFile('sim')) {
+                if ($rekrutmen->sim != null) {
+                    Storage::delete($rekrutmen->sim);
+                }
+                $file = $request->file('sim');
+                $fileName = $file->getClientOriginalName();
+                $path = $file->storeAs('public/berkas/' . $validatedData['nik'], $fileName);
+                $validatedData['sim'] = $fileName;
+            }
+            if ($request->hasFile('npwp')) {
+                if ($rekrutmen->npwp != null) {
+                    Storage::delete($rekrutmen->npwp);
+                }
+                $file = $request->file('npwp');
+                $fileName = $file->getClientOriginalName();
+                $path = $file->storeAs('public/berkas/' . $validatedData['nik'], $fileName);
+                $validatedData['npwp'] = $fileName;
+            }
+
+            Rekrutmen::where('id', $id)->update($validatedData);
+            DB::commit();
+            // dd($validatedData);
+            return redirect()->route('profileshow')->with('success', 'Data berhasil diperbaharui.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('fail', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
     }
 
     /**
