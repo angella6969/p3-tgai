@@ -58,11 +58,11 @@
                             </a>
                         @endif
                     </li>
-                    <li class="menu-item">
+                    {{-- <li class="menu-item">
                         <a href="#" class="menu-link">
                             <div data-i18n="Without menu">Dokumen</div>
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
             </li>
         @endcan

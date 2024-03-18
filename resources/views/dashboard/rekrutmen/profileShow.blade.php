@@ -14,7 +14,7 @@
                         <div class="card-body">
                             <div
                                 class="d-flex align-items-start align-items-sm-center gap-4 d-lg-flex justify-content-center">
-                                <img src="{{ !empty($rekrutmens->profile) ? asset($rekrutmens->profile) : '/template/assets/img/avatars/1.png' }}"
+                                <img src="{{ !empty($rekrutmens->profile) ? asset('storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->profile) : '/template/assets/img/avatars/1.png' }}"
                                     alt="user-avatar" class="d-block rounded" height="300" width="300"
                                     id="uploadedAvatar" />
                             </div>
@@ -262,10 +262,10 @@
                                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                                             </button>
                                                             <div class="dropdown-menu">
-                                                                {{-- <a class="dropdown-item edit-button"
+                                                                <a class="dropdown-item edit-button"
                                                                     href="javascript:void(0);" data-file-target="npwp">
                                                                     <i class="bx bx-edit-alt me-1"></i> Edit
-                                                                </a> --}}
+                                                                </a>
                                                                 <a class="dropdown-item" target="_blank"
                                                                     href="{{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->npwp) }}">
                                                                     <i class="bx bx-trash me-1"></i> Show

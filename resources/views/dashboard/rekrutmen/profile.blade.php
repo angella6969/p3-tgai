@@ -14,13 +14,7 @@
                             enctype="multipart/form-data">
                             @csrf
                             <h5 class="card-header">Detail Profil</h5>
-                            <div class="card-body d-flex justify-content-center">
-                                <div class="d-flex align-items-start align-items-sm-center gap-4">
-                                    <div class="button-wrapper">
-                                        <x-u_img nama="url_foto" judul="" nilai="" />
-                                    </div>
-                                </div>
-                            </div>
+
 
                             <hr class="my-0" />
                             <div class="card-body">
@@ -48,6 +42,14 @@
                                     <x-t_area judul="Alamat Domisili" nama="alamatdomisili"
                                         nilai="{{ old('alamatdomisili', $rekrutmens->alamatdomisili ?? null) }}"
                                         placeholder="Alamat Sesuai Tempat Domisili"></x-t_area>
+
+                                    {{-- <div class="">
+                                        <div class="d-flex align-items-start align-items-sm-center gap-4">
+                                            <div class="button-wrapper"> --}}
+                                    <x-u_img nama="profile" judul="Photo Profil" nilai="" />
+                                    {{-- </div>
+                                        </div>
+                                    </div> --}}
 
                                     <x-upload judul="Surat Lamaran" nama="lamaran"
                                         nilai="{{ old('lamaran', $rekrutmens->lamaran ?? null) }}"

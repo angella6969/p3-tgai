@@ -10,11 +10,17 @@
           <nav id="navbar" class="navbar">
               <ul>
                   <li><a href="{{ route('beranda') }}">Beranda</a></li>
-                  {{-- <li><a href="{{ route('info.index') }}">Info</a></li> --}}
-                  {{-- <li><a href="#">Download</a></li> --}}
                   <li><a href="{{ route('pengumuman.index') }}">Pengumuman</a></li>
-                  <li><a href="{{ route('login') }}">login</a></li>
-                  <li><a href="{{ route('registrasi') }}">Daftar</a></li>
+                  @if (auth()->check())
+                      <li><a href="{{ route('logout') }}">logout</a></li>
+                      @if (auth()->user()->role_id == 3)
+                          <li><a href="{{ route('rekrutmen.index') }}">Dashboard</a></li>
+                      @else
+                          <li><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
+                      @endif
+                  @else
+                      <li><a href="{{ route('login') }}">login</a></li>
+                  @endif
               </ul>
               <i class="bi bi-list mobile-nav-toggle"></i>
           </nav><!-- .navbar -->

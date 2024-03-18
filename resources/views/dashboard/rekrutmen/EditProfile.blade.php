@@ -16,24 +16,26 @@
 
                             <h5 class="card-header">Update Detail Profil</h5>
                             <div class="card-body">
-                                <div class="d-flex align-items-start align-items-sm-center gap-4">
-                                    <img src="{{ !empty($rekrutmens->profile) ? asset($rekrutmens->profile) : '/template/assets/img/avatars/1.png' }}"
-                                        alt="user-avatar" class="d-block rounded" height="100" width="100"
-                                        id="uploadedAvatar" />
-
-                                    <div class="button-wrapper">
-                                        <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                                            <span class="d-none d-sm-block">Upload new photo</span>
-                                            <i class="bx bx-upload d-block d-sm-none"></i>
-                                            <input type="file" id="upload" class="account-file-input" hidden
-                                                accept="image/png, image/jpeg" />
-                                        </label>
-                                        <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
-                                            <i class="bx bx-reset d-block d-sm-none"></i>
-                                            <span class="d-none d-sm-block">Reset</span>
-                                        </button>
-                                        <p class="text-muted mb-0">JPG, PNG. Max size of 2 MB</p>
+                                <div class="d-flex justify-content-center">
+                                    <div class="d-flex align-items-start align-items-sm-center gap-4">
+                                        <img src="{{ !empty($rekrutmens->profile) ? asset('storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->profile) : asset('/template/assets/img/avatars/1.png') }}"
+                                            alt="user-avatar" class="d-block rounded" height="500" width="500"
+                                            id="uploadedAvatar" />
                                     </div>
+                                </div>
+                                <div class="button-wrapper ">
+                                    <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+                                        <span class="d-none d-sm-block">Upload new photo</span>
+                                        <i class="bx bx-upload d-block d-sm-none"></i>
+                                        <input type="file" name="profile" id="upload" class="account-file-input"
+                                            onchange="previewImage(this)" hidden accept="image/png, image/jpeg" />
+                                    </label>
+                                    <button type="button" class="btn btn-outline-secondary account-image-reset mb-4"
+                                        onclick="resetImage()">
+                                        <i class="bx bx-reset d-block d-sm-none"></i>
+                                        <span class="d-none d-sm-block">Reset</span>
+                                    </button>
+                                    <p class="text-muted mb-0">JPG, PNG. Max size of 1 MB</p>
                                 </div>
                             </div>
                             <hr class="my-0" />
@@ -47,8 +49,21 @@
                                     <x-input label="E-mail" icon=""
                                         value1="{{ old('email', $rekrutmens->email ?? null) }}" nama="email" />
 
-                                    <x-input label="NIK" icon=""
-                                        value1="{{ old('nik', $rekrutmens->nik ?? null) }}" nama="nik" />
+                                    {{-- <x-input label="NIK" icon=""
+                                        value1="{{ old('nik', $rekrutmens->nik ?? null) }}" nama="nik" /> --}}
+
+                                    <div class="mb-3">
+                                        <label class="col-sm-2 form-label">Nomor Induk Kependudukan (NIK)</label>
+                                        <div class="col-sm-10">
+                                            <div class="input-group input-group-merge">
+                                                <input type="text" class="form-control phone-mask" disabled
+                                                    value="{{ $rekrutmens->nik }}" />
+                                                <input type="text" hidden class="form-control phone-mask" name="nik"
+                                                    value="{{ old('nik', $rekrutmens->nik ?? null) }}" />
+                                            </div>
+                                        </div>
+                                    </div>
+
 
                                     <x-input label="Nomor HP" icon=""
                                         value1="{{ old('nohp', $rekrutmens->nohp ?? null) }}" nama="nohp" />
@@ -113,7 +128,8 @@
                                                                 </button>
                                                                 <div class="dropdown-menu">
                                                                     <a class="dropdown-item edit-button"
-                                                                        href="javascript:void(0);" data-file-target="ijasa">
+                                                                        href="javascript:void(0);"
+                                                                        data-file-target="ijasa">
                                                                         <i class="bx bx-edit-alt me-1"></i> Edit
                                                                     </a>
                                                                     <a class="dropdown-item" target="_blank"
@@ -287,7 +303,22 @@
     </div>
     <x-alert></x-alert>
 
+    <script>
+        function previewImage(input) {
+            const file = input.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('uploadedAvatar').src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
 
+        function resetImage() {
+            document.getElementById('uploadedAvatar').src =
+                "{{ !empty($rekrutmens->profile) ? asset('storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->profile) : asset('/template/assets/img/avatars/1.png') }}";
+            document.getElementById('upload').value = ''; // Reset file input
+        }
+    </script>
 
     <script>
         // Ambil semua tombol "Edit" dengan class 'edit-button'

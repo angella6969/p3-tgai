@@ -59,6 +59,7 @@ class RekrutmenController extends Controller
             'ktp' => ['file', 'max:1024', 'mimetypes:image/jpeg,image/png,image/gif,application/pdf', 'nullable'],
             'sim' => ['file', 'max:1024', 'mimetypes:image/jpeg,image/png,image/gif,application/pdf', 'nullable'],
             'npwp' => ['file', 'max:1024', 'mimetypes:image/jpeg,image/png,image/gif,application/pdf', 'nullable'],
+            'profile' => ['file', 'max:1024', 'mimetypes:image/jpeg,image/png', 'nullable'],
         ]);
         // dd($validatedData);
 
@@ -108,15 +109,22 @@ class RekrutmenController extends Controller
                 $path = $file->storeAs('public/berkas/' . $validatedData['nik'], $fileName); // Simpan file dengan nama asli
                 $validatedData['npwp'] = $fileName;
             }
-
-            if ($rekrutmen) {
-                // Jika data rekrutmen sudah ada, lakukan update
-                $rekrutmen->update($validatedData);
-            } else {
-                // Jika data rekrutmen belum ada, lakukan insert
-                $rekrutmen = Rekrutmen::create($validatedData);
+            if ($request->hasFile('profile')) {
+                $file = $request->file('profile');
+                $fileName = $file->getClientOriginalName(); // Mengambil nama asli file
+                $path = $file->storeAs('public/berkas/' . $validatedData['nik'], $fileName); // Simpan file dengan nama asli
+                $validatedData['profile'] = $fileName;
             }
-            // Rekrutmen::create($validatedData);
+
+
+            // if ($rekrutmen) {
+            //     // Jika data rekrutmen sudah ada, lakukan update
+            //     $rekrutmen->update($validatedData);
+            // } else {
+            //     // Jika data rekrutmen belum ada, lakukan insert
+            //     $rekrutmen = Rekrutmen::create($validatedData);
+            // }
+            Rekrutmen::create($validatedData);
 
             DB::commit();
             return redirect('/rekrutmen')->with('success', 'Data berhasil disimpan.');
@@ -236,6 +244,8 @@ class RekrutmenController extends Controller
             'ktp' => ['file', 'max:1024', 'mimetypes:image/jpeg,image/png,image/gif,application/pdf', 'nullable'],
             'sim' => ['file', 'max:1024', 'mimetypes:image/jpeg,image/png,image/gif,application/pdf', 'nullable'],
             'npwp' => ['file', 'max:1024', 'mimetypes:image/jpeg,image/png,image/gif,application/pdf', 'nullable'],
+            'profile' => ['file', 'max:1024', 'mimetypes:image/jpeg,image/png', 'nullable'],
+
         ]);
 
         $rekrutmen = Rekrutmen::findOrFail($id);
@@ -304,7 +314,16 @@ class RekrutmenController extends Controller
                 $path = $file->storeAs('public/berkas/' . $validatedData['nik'], $fileName);
                 $validatedData['npwp'] = $fileName;
             }
-
+            if ($request->hasFile('profile')) {
+                if ($rekrutmen->profile != null) {
+                    Storage::delete($rekrutmen->profile);
+                }
+                $file = $request->file('profile');
+                $fileName = $file->getClientOriginalName();
+                $path = $file->storeAs('public/berkas/' . $validatedData['nik'], $fileName);
+                $validatedData['profile'] = $fileName;
+            }
+            // dd($validatedData);
             Rekrutmen::where('id', $id)->update($validatedData);
             DB::commit();
             // dd($validatedData);
