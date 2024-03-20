@@ -19,7 +19,8 @@
                     </thead>
                     <tbody class="table-border-bottom-0">
                         @foreach ($rekrutmens as $rekrutmen)
-                            <tr>
+                            <tr
+                                class="{{ $rekrutmen->status === 'lolos' ? 'bg-success' : '' }}  ">
                                 <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
                                     <strong>{{ $rekrutmen->nama }}</strong>
                                 </td>
@@ -28,7 +29,8 @@
                                 </td>
                                 <td><span class="badge bg-label-primary me-1">{{ $rekrutmen->status }}</span></td>
                                 <td>
-                                    <a href="{{ route('rekrutmen.show', ['rekrutman' => $rekrutmen->id]) }}"><i
+                                    <a
+                                        href="{{ route('dashboard.dataRekrutmen.show', ['data_rekrutman' => $rekrutmen->id]) }}"><i
                                             class="bx bx-low-vision"></i></a>
                                 </td>
                             </tr>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\PengumumanController;
@@ -56,7 +57,20 @@ Route::middleware(['auth'])->group(function () {
             'destroy' => 'info.destroy',
         ]);
 
-        route::get('/dashboard/dataRekrutmen', [DashboardController::class, 'dataRekrutmen'])->name('dashboard.dataRekrutmen');
+        // route::get('/dashboard/dataRekrutmen', [DashboardController::class, 'dataRekrutmen'])->name('dashboard.dataRekrutmen');
+
+
+
+        // route::get('/dashboard/data-rekrutmen', [AdminController::class, 'index'])->name('dashboard.dataRekrutmen');
+        route::resource('/dashboard/data-rekrutmen', AdminController::class)->names([
+            'index' => 'dashboard.dataRekrutmen',
+            'create' => 'dashboard.dataRekrutmen.create',
+            'store' => 'dashboard.dataRekrutmen.store',
+            'edit' => 'dashboard.dataRekrutmen.edit',
+            'show' => 'dashboard.dataRekrutmen.show',
+            'update' => 'dashboard.dataRekrutmen.update',
+            'destroy' => 'dashboard.dataRekrutmen.destroy',
+        ]);
         route::resource('/dashboard', DashboardController::class)->names([
             'index' => 'dashboard.index',
             'create' => 'dashboard.create',

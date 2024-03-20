@@ -12,6 +12,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "org_heigl/ghostscript": "^2.3",
+        "smalot/pdfparser": "^2.9",
         "spatie/pdf-to-image": "^1.2",
         "spatie/pdf-to-text": "^1.52"
     },
