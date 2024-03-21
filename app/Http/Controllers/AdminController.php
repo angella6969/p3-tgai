@@ -4,15 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Rekrutmen;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Barryvdh\Snappy\Facades\SnappyPdf;
 use Illuminate\Http\Request;
-use Spatie\PdfToImage\Pdf;
-use GdImage;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
-use Imagick;
-use Smalot\PdfParser\Parser;
-use Illuminate\Support\Facades\Response;
+use Mpdf\Mpdf;
+use Illuminate\Support\Facades\View;
 
 class AdminController extends Controller
 {
@@ -21,7 +17,16 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $rekrutmen = Rekrutmen::latest()->get();
+        // $rekrutmen = Rekrutmen::latest()->get();
+        $rekrutmen = Rekrutmen::latest()->get()->sortBy(function ($rekrutmen) {
+            if ($rekrutmen->status == 'Tidak Lolos') {
+                return 2;
+            } elseif ($rekrutmen->status == 'Lolos') {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
         return view('dashboard.admin.dataRekrutmen', [
             'rekrutmens' => $rekrutmen
         ]);
@@ -48,53 +53,9 @@ class AdminController extends Controller
      */
     public function show(string $id)
     {
-
         $rekrutmens = Rekrutmen::findOrfail($id);
-
-        // if (!$rekrutmens) {
-        //     // Tidak ada rekrutmen yang ditemukan, lakukan penanganan kesalahan di sini
-        //     abort(404); // Contoh: Menampilkan halaman 404
-        // }
-
-        // $nik = $rekrutmens['nik']; // Ini bisa diambil dari model, database, atau nilai dinamis lainnya
-
-        // $pdfFiles = [];
-
-        // if ($nik) {
-        //     $namaFiles = [
-        //         $rekrutmens['lamaran'],
-        //         $rekrutmens['ijasa'],
-        //         $rekrutmens['pernyataan'],
-        //         $rekrutmens['cv'],
-        //         $rekrutmens['ktp']
-        //     ];
-
-        //     foreach ($namaFiles as $namaFile) {
-        //         if ($namaFile) {
-        //             //  $pdfFiles[] = public_path('storage/berkas/' . $nik . '/' . $namaFile);
-        //             $pdfFiles[] = storage_path('/app/public/berkas/' . $nik . '/' . $namaFile);
-        //         }
-        //     }
-        // }
-
-        // $base64Images = [];
-
-        // foreach ($pdfFiles as $pdfFile) {
-        //     $imgExt = new Imagick();
-        //     $imgExt->setResolution(300, 300); // Set resolusi gambar
-        //     $imgExt->readImage($pdfFile);
-
-        //     // Konversi setiap halaman PDF menjadi gambar PNG
-        //     foreach ($imgExt as $image) {
-        //         $image->setImageFormat('png');
-        //         $base64Images[] = 'data:image/png;base64,' . base64_encode($image->getImageBlob());
-        //     }
-        // }
-
-
         return view('dashboard.admin.show', [
             'rekrutmen' => $rekrutmens,
-            // 'base64Images' => $base64Images
         ]);
     }
 
@@ -112,7 +73,13 @@ class AdminController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedData = $request->validate([
+            'status' => ['required'],
+        ]);
+        Rekrutmen::where('id', $id)->update($validatedData);
+
+        // dd($id);
+        return redirect()->route('dashboard.dataRekrutmen')->with('success', 'Data berhasil diperbaharui.');
     }
 
     /**
@@ -121,5 +88,60 @@ class AdminController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function PrintPdf()
+    {
+        // $rekrutmen = Rekrutmen::where('status', 'Lolos')->get();
+        // return view('dashboard.admin.print-pdf', [
+        //     'rekrutmens' => $rekrutmen
+        // ]);
+        // Query untuk mendapatkan data Rekrutmen dengan status 'Lolos'
+
+
+        // $rekrutmen = Rekrutmen::where('status', 'Lolos')->get();
+        // // Render tampilan Blade ke dalam HTML dengan data Rekrutmen
+        // $html = view('dashboard.admin.print-pdf', ['rekrutmens' => $rekrutmen])->render();
+
+        // // Buat instance Dompdf
+        // $dompdf = new Dompdf();
+
+        // // Render HTML ke dalam PDF
+        // $dompdf->loadHtml($html);
+
+        // // (Optional) Set paper size and orientation
+        // $dompdf->setPaper('A4', 'portrait');
+
+        // // Render the HTML as PDF
+        // $dompdf->render();
+
+        // // Tampilkan atau unduh file PDF
+        // return $dompdf->stream('document.pdf');
+
+        // Ambil data Rekrutmen dengan status 'Lolos'
+        // $rekrutmen = Rekrutmen::where('status', 'Lolos')->get();
+
+        // // Render tampilan Blade ke dalam HTML dengan data Rekrutmen
+        // $html = View::make('dashboard.admin.print-pdf', ['rekrutmens' => $rekrutmen])->render();
+
+        // // Buat instance MPDF
+        // $mpdf = new Mpdf();
+
+        // // Render HTML ke dalam PDF
+        // $mpdf->WriteHTML($html);
+
+        // // Keluarkan PDF ke 
+         // Buat instance MPDF
+        // Load view blade
+        $html = View::make('dashboard.admin.index')->render();
+        
+        // Buat instance MPDF
+        $mpdf = new Mpdf();
+        
+        // Render HTML ke dalam PDF
+        $mpdf->WriteHTML($html);
+        
+        // Keluarkan PDF ke browser
+        $mpdf->Output();
     }
 }

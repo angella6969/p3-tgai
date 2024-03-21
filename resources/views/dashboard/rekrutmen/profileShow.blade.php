@@ -150,8 +150,12 @@
                                                                     href="javascript:void(0);" data-file-target="cv">
                                                                     <i class="bx bx-edit-alt me-1"></i> Edit
                                                                 </a> --}}
-                                                                <a class="dropdown-item" target="_blank"
+                                                                {{-- <a class="dropdown-item" target="_blank"
                                                                     href="{{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->cv) }}">
+                                                                    <i class="bx bx-trash me-1"></i> Show
+                                                                </a> --}}
+                                                                <a class="dropdown-item" target="_blank"
+                                                                    href="https://drive.google.com/viewerng/viewer?embedded=true&url={{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->cv) }}">
                                                                     <i class="bx bx-trash me-1"></i> Show
                                                                 </a>
                                                             </div>
@@ -175,8 +179,12 @@
                                                                     href="javascript:void(0);" data-file-target="ktp">
                                                                     <i class="bx bx-edit-alt me-1"></i> Edit
                                                                 </a> --}}
-                                                                <a class="dropdown-item" target="_blank"
+                                                                {{-- <a class="dropdown-item" target="_blank"
                                                                     href="{{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->ktp) }}">
+                                                                    <i class="bx bx-trash me-1"></i> Show
+                                                                </a> --}}
+                                                                <a class="dropdown-item" target="_blank"
+                                                                    href="https://drive.google.com/viewerng/viewer?embedded=true&url={{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->ktp) }}">
                                                                     <i class="bx bx-trash me-1"></i> Show
                                                                 </a>
                                                             </div>
@@ -196,12 +204,12 @@
                                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                                             </button>
                                                             <div class="dropdown-menu">
-                                                                <a class="dropdown-item edit-button"
-                                                                    href="javascript:void(0);" data-file-target="npwp">
-                                                                    <i class="bx bx-edit-alt me-1"></i> Edit
-                                                                </a>
-                                                                <a class="dropdown-item" target="_blank"
+                                                                {{-- <a class="dropdown-item" target="_blank"
                                                                     href="{{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->npwp) }}">
+                                                                    <i class="bx bx-trash me-1"></i> Show
+                                                                </a> --}}
+                                                                <a class="dropdown-item" target="_blank"
+                                                                    href="https://drive.google.com/viewerng/viewer?embedded=true&url={{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->npwp) }}">
                                                                     <i class="bx bx-trash me-1"></i> Show
                                                                 </a>
                                                             </div>
@@ -225,8 +233,17 @@
                                                                     href="javascript:void(0);" data-file-target="sim">
                                                                     <i class="bx bx-edit-alt me-1"></i> Edit
                                                                 </a> --}}
-                                                                <a class="dropdown-item" target="_blank"
+                                                                {{-- <a class="dropdown-item" target="_blank"
                                                                     href="{{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->sim) }}">
+                                                                    <i class="bx bx-trash me-1"></i> Show
+
+                                                                    <iframe
+                                                                        src="https://drive.google.com/viewerng/viewer?embedded=true&url={{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->lamaran) }}"
+                                                                        width="100%" height="600"></iframe>
+                                                                </a> --}}
+
+                                                                <a class="dropdown-item" target="_blank"
+                                                                    href="https://drive.google.com/viewerng/viewer?embedded=true&url={{ asset('/storage/berkas/' . $rekrutmens->nik . '/' . $rekrutmens->lamaran) }}">
                                                                     <i class="bx bx-trash me-1"></i> Show
                                                                 </a>
                                                             </div>
@@ -255,3 +272,6 @@
         </div>
         <x-alert></x-alert>
     @endsection
+
+
+    {{-- super@dmin2023 --}}

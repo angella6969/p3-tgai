@@ -61,7 +61,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-        // route::get('/dashboard/data-rekrutmen', [AdminController::class, 'index'])->name('dashboard.dataRekrutmen');
+        route::get('/dashboard/data-rekrutmen/print-pdf', [AdminController::class, 'PrintPdf'])->name('dashboard.PrintPdf');
         route::resource('/dashboard/data-rekrutmen', AdminController::class)->names([
             'index' => 'dashboard.dataRekrutmen',
             'create' => 'dashboard.dataRekrutmen.create',
