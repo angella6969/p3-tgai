@@ -93,7 +93,7 @@
                             <label for="defaultSelect" class="form-label">
                                 <h2>Kualifikasi</h2>
                             </label>
-                            <select id="defaultSelect" name="status" class="form-select">
+                            <select id="defaultSelect" name="status" class="form-select" required> 
                                 <option value="">Default select</option>
                                 <option value="Lolos">Lolos</option>
                                 <option value="Tidak Lolos">Tidak Lolos</option>

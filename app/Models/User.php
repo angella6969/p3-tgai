@@ -42,4 +42,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Rekrutmen::class);
     }
+
+    public function tests()
+    {
+        return $this->hasMany(Test::class);
+    }
 }

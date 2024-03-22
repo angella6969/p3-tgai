@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\RekrutmenController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,19 @@ route::post('/registrasi', [UserController::class, 'registrasiStore'])->name('re
 // route::get('/dashboard/q', [DashboardController::class, 'index'])->name('dashboard'); 
 
 Route::middleware(['auth'])->group(function () {
+
+    Route::middleware(['SuperAdmin'])->group(function () {
+        route::resource('/dashboard/ujian', TestController::class)->names([
+            'index' => 'ujian.index',
+            'create' => 'ujian.create',
+            'store' => 'ujian.store',
+            'edit' => 'ujian.edit',
+            'show' => 'ujian.show',
+            'update' => 'ujian.update',
+            'destroy' => 'ujian.destroy',
+        ]);
+    });
+
 
     Route::middleware(['Admin'])->group(function () {
         route::resource('/pengumuman', PengumumanController::class)->names([

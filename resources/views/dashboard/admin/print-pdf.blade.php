@@ -36,6 +36,42 @@
     <script src="{{ asset('template/assets/js/config.js') }}"></script>
 
 </head>
+<style type="text/css">
+    /* Menyembunyikan tombol cetak saat mencetak */
+    @media print {
+        #printButton {
+            display: none;
+        }
+    }
+
+    /* Mengatur ukuran kertas dan orientasi */
+    @page {
+        size: auto;
+        /* Ukuran kertas otomatis (ukuran halaman akan disesuaikan dengan konten) */
+        margin: 20mm;
+        /* Margin halaman */
+    }
+
+    /* Mengatur konten agar sesuai dengan ukuran kertas */
+    body {
+        margin: 0;
+        /* Menghapus margin body */
+        padding: 0;
+        /* Menghapus padding body */
+        width: 100%;
+        /* Lebar konten 100% dari ukuran kertas */
+        height: 100%;
+        /* Tinggi konten 100% dari ukuran kertas */
+    }
+
+    /* Gaya nomor halaman */
+    .page-number {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+</style>
 <div class="container">
     <div class="row">
 
@@ -58,7 +94,7 @@
 
     </div>
 
-    <div class="table-responsive text-nowrap">
+    <div class="table-responsive text-nowrap" style="font-size: 12px">
         <table class="table">
             <thead>
                 <tr>
@@ -84,9 +120,13 @@
                 @endforeach
             </tbody>
         </table>
+        {{-- <div class="page-number">Page </div> --}}
+        <button id="printButton" class="btn btn-info mt-3 mb-3" onclick="window.print()">Print</button>
+
     </div>
 </div>
 
+<div class="page-number"></div>
 
 <body>
 
@@ -112,5 +152,17 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<script>
+    window.onload = function() {
+        // Mengambil semua elemen div dengan kelas .page-number
+        var pageNumberElements = document.getElementsByClassName('page-number');
+
+        // Loop melalui setiap elemen dan tambahkan nomor halaman
+        for (var i = 0; i < pageNumberElements.length; i++) {
+            pageNumberElements[i].innerText = 'Page ' + (i + 1); // Nomor halaman dimulai dari 1
+        }
+    };
+</script>
 
 </html>

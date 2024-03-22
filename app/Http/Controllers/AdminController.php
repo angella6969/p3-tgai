@@ -92,56 +92,12 @@ class AdminController extends Controller
 
     public function PrintPdf()
     {
-        // $rekrutmen = Rekrutmen::where('status', 'Lolos')->get();
-        // return view('dashboard.admin.print-pdf', [
-        //     'rekrutmens' => $rekrutmen
-        // ]);
-        // Query untuk mendapatkan data Rekrutmen dengan status 'Lolos'
+        $rekrutmen = Rekrutmen::where('status', 'Lolos')
+            ->orderBy('nama', 'asc')
+            ->get();
 
-
-        // $rekrutmen = Rekrutmen::where('status', 'Lolos')->get();
-        // // Render tampilan Blade ke dalam HTML dengan data Rekrutmen
-        // $html = view('dashboard.admin.print-pdf', ['rekrutmens' => $rekrutmen])->render();
-
-        // // Buat instance Dompdf
-        // $dompdf = new Dompdf();
-
-        // // Render HTML ke dalam PDF
-        // $dompdf->loadHtml($html);
-
-        // // (Optional) Set paper size and orientation
-        // $dompdf->setPaper('A4', 'portrait');
-
-        // // Render the HTML as PDF
-        // $dompdf->render();
-
-        // // Tampilkan atau unduh file PDF
-        // return $dompdf->stream('document.pdf');
-
-        // Ambil data Rekrutmen dengan status 'Lolos'
-        // $rekrutmen = Rekrutmen::where('status', 'Lolos')->get();
-
-        // // Render tampilan Blade ke dalam HTML dengan data Rekrutmen
-        // $html = View::make('dashboard.admin.print-pdf', ['rekrutmens' => $rekrutmen])->render();
-
-        // // Buat instance MPDF
-        // $mpdf = new Mpdf();
-
-        // // Render HTML ke dalam PDF
-        // $mpdf->WriteHTML($html);
-
-        // // Keluarkan PDF ke 
-         // Buat instance MPDF
-        // Load view blade
-        $html = View::make('dashboard.admin.index')->render();
-        
-        // Buat instance MPDF
-        $mpdf = new Mpdf();
-        
-        // Render HTML ke dalam PDF
-        $mpdf->WriteHTML($html);
-        
-        // Keluarkan PDF ke browser
-        $mpdf->Output();
+        return view('dashboard.admin.print-pdf', [
+            'rekrutmens' => $rekrutmen
+        ]);
     }
 }

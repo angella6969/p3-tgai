@@ -13,6 +13,7 @@
     <div class="menu-inner-shadow"></div>
 
     <ul class="menu-inner py-1">
+
         @can('Admin')
             <!-- Dashboard -->
             <li class="menu-item active">
@@ -32,6 +33,23 @@
                     <li class="menu-item">
                         <a href="{{ route('dashboard.dataRekrutmen') }}" class="menu-link">
                             <div data-i18n="Without menu">Data Rekrutmen</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        @endcan
+
+        @can('SuperAdmin')
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-layout"></i>
+                    <div data-i18n="Layouts">Super Admin</div>
+                </a>
+
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="{{ route('ujian.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Ujian</div>
                         </a>
                     </li>
                 </ul>

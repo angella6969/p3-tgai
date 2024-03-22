@@ -15,6 +15,10 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         \App\Models\Rekrutmen::factory(1000)->create();
+        \App\Models\Test::factory(10)->create();
+        \App\Models\Question::factory(10)->create();
+        \App\Models\Option::factory(10)->create();
+        \App\Models\Answer::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
@@ -25,6 +29,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'superadmin@gmail.com',
             'password' => Hash::make('123456'),
             'role_id' => '1',
+        ]);
+        User::create([
+            'nama' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('123456'),
+            'role_id' => '2',
         ]);
     }
 }
