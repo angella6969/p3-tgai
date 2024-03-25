@@ -34,7 +34,7 @@ class TestController extends Controller
      */
     public function store(StoreTestRequest $request)
     {
-        //
+        dd('store');
     }
 
     /**
