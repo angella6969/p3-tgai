@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\PengumumanController;
@@ -34,6 +35,35 @@ route::get('/registrasi', [UserController::class, 'registrasi'])->name('registra
 route::post('/registrasi', [UserController::class, 'registrasiStore'])->name('registrasiStore');
 
 // route::get('/dashboard/q', [DashboardController::class, 'index'])->name('dashboard'); 
+
+route::resource('/test', AnswerController::class)->names([
+    'index' => 'test.index',
+    'create' => 'test.create',
+    'store' => 'test.store',
+    'edit' => 'test.edit',
+    'show' => 'test.show',
+    'update' => 'test.update',
+    'destroy' => 'test.destroy',
+]);
+Route::get('/ujian', [AnswerController::class, 'index'])->name('ujian1.index');
+Route::post('/ujian/jawab', [AnswerController::class, 'jawab'])->name('ujian.proses_jawab');
+Route::get('/ujian/selesai', [AnswerController::class, 'selesai'])->name('ujian.selesai');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Route::middleware(['auth'])->group(function () {
 

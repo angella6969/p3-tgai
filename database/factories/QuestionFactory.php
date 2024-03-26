@@ -17,8 +17,7 @@ class QuestionFactory extends Factory
     public function definition(): array
     {
         return [
-            'test_id' => \App\Models\Test::factory(),
-            'text' => $this->faker->sentence,
+            'question' => $this->faker->sentence,
         ];
     }
 }
